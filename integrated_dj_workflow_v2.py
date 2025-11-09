@@ -21,10 +21,13 @@ CSV_DIRECTORY = "PLAILIST-dj-attendee-fingerprint"
 AUDIO_INTERVAL = 30  # Analyze audio every 30 seconds
 GEMINI_INTERVAL = 90  # Call Gemini every 90 seconds
 
-# Demo audio files for testing
+# Demo audio files for 2-minute demo sequence
 DEMO_AUDIO_FILES = [
-    "crowd-cheer-and-applause-406644.mp3",
-    "crowd-disappointment-reaction-352718.mp3"
+    "people-talking-at-bar-72249.mp3",           # 0:00-0:30  | Warm-up chatter (score: ~-0.3)
+    "crowd-cheer-and-applause-406644.mp3",       # 0:30-1:00  | Building energy (score: ~+0.7)
+    "crowd-cheer-and-applause-406644.mp3",       # 1:00-1:30  | PEAK energy → GEMINI CALL #1 (score: ~+0.7)
+    "crowd-disappointment-reaction-352718.mp3",  # 1:30-2:00  | Energy dip (score: ~-1.2)
+    "crowd-cheer-and-applause-406644.mp3",       # 2:00-2:30  | Recovery → GEMINI CALL #2 (score: ~+0.7)
 ]
 
 class ContinuousDJSystem:
