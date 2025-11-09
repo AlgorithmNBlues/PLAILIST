@@ -859,59 +859,34 @@ def reset_party():
 # ---------- Frontend Routes ----------
 
 @app.route('/')
-@app.route('/login')
-def login_page():
-    """Serve the login page"""
-    return render_template('login.html') if os.path.exists('frontend/login.html') else '''
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Plailist - Login</title>
-        <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:#f5f7fb; }
-            .container { max-width:400px; margin:80px auto; background:white; padding:24px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
-            label { display:block; margin-bottom:6px; font-weight:600 }
-            input[type="email"], input[type="password"] { width:100%; padding:8px 10px; margin-bottom:12px; border:1px solid #dfe6ef; border-radius:4px }
-            button { width:100%; padding:10px; background:#2563eb; color:white; border:none; border-radius:4px; font-weight:600; cursor:pointer; }
-            button:hover { background:#1d4ed8; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h2>🎧 Plailist - Sign in</h2>
-            <p style="color:#6b7280; margin-bottom:24px;">AI-powered party DJ with crowd vibe analysis</p>
-            <form method="GET" action="/session">
-                <div>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" value="demo@plailist.com" />
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" value="demo" />
-                </div>
-                <button type="submit">Start Party Session</button>
-            </form>
-        </div>
-    </body>
-    </html>
-    '''
-
-@app.route('/session')
 def session_home():
     """
-    Serve the main party session page (home.html)
-    Query parameter: vibe (optional) - initial vibe setting
+    Serve the main party session page (home.html) directly - no login needed
     """
-    vibe = request.args.get('vibe', 'Energetic and Upbeat')
-    
     try:
-        # Serve home.html from frontend directory
-        return render_template('home.html')
+        # Direct file read for faster loading
+        import os
+        frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'home.html')
+        with open(frontend_path, 'r', encoding='utf-8') as f:
+            return f.read()
     except Exception as e:
         logging.error(f"Error serving home.html: {e}")
-        return jsonify({'error': 'home.html not found', 'details': str(e)}), 404
+        return f'''
+        <!doctype html>
+        <html>
+        <head><title>Error</title></head>
+        <body>
+            <h1>Error loading Plailist</h1>
+            <p>Could not find home.html: {str(e)}</p>
+            <p>Template folder: {app.template_folder}</p>
+        </body>
+        </html>
+        ''', 500
+
+@app.route('/session')
+def session_alias():
+    """Alias for / route - redirect to main page"""
+    return session_home()
 
 @app.route('/audio', methods=['POST'])
 def process_audio():
@@ -1104,9 +1079,8 @@ if __name__ == '__main__':
     print("🎧 PLAILIST - AI DJ Party System")
     print("=" * 70)
     print("\n🌐 Server starting on http://127.0.0.1:5000\n")
-    print("📱 Frontend URLs:")
-    print("   • Login:  http://127.0.0.1:5000/")
-    print("   • Party:  http://127.0.0.1:5000/session")
+    print("📱 Frontend URL:")
+    print("   • Main App:  http://127.0.0.1:5000/")
     print("\n🤖 API Endpoints:")
     print("   • GET  /health              - Health check")
     print("   • POST /classify-audio     - Analyze audio crowd reaction")

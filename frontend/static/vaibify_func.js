@@ -154,6 +154,9 @@
         
         // Call API and update when it returns
         fetchNextVibeAndSongs().then(result => {
+            console.log('Fetched vibe and songs:', result);
+            console.log('Songs count:', result.songs ? result.songs.length : 0);
+            
             // Restore original content with new vibe
             vibeLeft.innerHTML = originalLeftContent;
             vibeRight.innerHTML = originalRightContent;
@@ -165,13 +168,33 @@
             window.setVibe(result.vibe);
             
             // Update queue with new songs
-            currentQueue = result.songs;
-            updateQueueDisplay();
-            
-            // Show notification
-            showNotification(`Vibe updated to: ${result.vibe}`);
+            if (result.songs && result.songs.length > 0) {
+                currentQueue = result.songs;
+                console.log('Updated currentQueue:', currentQueue);
+                updateQueueDisplay();
+                showNotification(`✅ Queue updated: ${result.songs.length} songs | Vibe: ${result.vibe}`);
+            } else {
+                console.warn('No songs in result, keeping current queue');
+                showNotification(`⚠️ Vibe updated to: ${result.vibe} (queue unchanged)`);
+            }
             
             console.log('Vibe check complete:', result);
+        }).catch(error => {
+            console.error('Error in vibe check:', error);
+            
+            // Restore original content even on error
+            vibeLeft.innerHTML = originalLeftContent;
+            vibeRight.innerHTML = originalRightContent;
+            
+            // Re-query bars after DOM update
+            bars = document.querySelectorAll('.eq-bar');
+            
+            // Restart animation with current vibe
+            const config = vibeConfigs[currentVibe];
+            animateBars();
+            animationInterval = setInterval(animateBars, config.speed);
+            
+            showNotification('❌ Vibe check failed, trying again soon...');
         });
     }
 })();
@@ -179,81 +202,127 @@
 // Function to fetch next vibe and songs from Flask APIs
 async function fetchNextVibeAndSongs() {
     try {
-        // Call your Flask API to get Gemini recommendations
-        const response = await fetch('http://127.0.0.1:5000/gemini-recommend', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        // First, get the current party state
+        const stateResponse = await fetch('http://127.0.0.1:5000/party-state');
         
-        if (!response.ok) {
-            throw new Error(`API returned ${response.status}: ${response.statusText}`);
+        if (!stateResponse.ok) {
+            throw new Error(`Party state API returned ${stateResponse.status}`);
         }
         
-        const data = await response.json();
-        console.log('Gemini API response:', data);
+        const stateData = await stateResponse.json();
+        console.log('Party state:', stateData);
         
-        // Extract vibe from the recommendation
-        // Map Gemini's action.recommendation to our vibe types
+        // Determine vibe from current trend and score
         let vibe = "Energetic and Upbeat"; // Default
+        const currentScore = stateData.current_score || 0;
+        const trend = stateData.current_trend || 'stable';
         
-        if (data.recommendation && data.recommendation.action) {
-            const action = data.recommendation.action.recommendation;
-            if (action === "increase_energy") {
-                vibe = "Rising Energy";
-            } else if (action === "wind_down") {
-                vibe = "Slowing Down";
-            } else if (action === "maintain_energy") {
-                // Determine based on current enthusiasm score
-                const currentScore = data.context?.crowd_state?.enthusiasm_score || 0;
-                if (currentScore > 0.5) {
-                    vibe = "Energetic and Upbeat";
-                } else {
-                    vibe = "Calm and Mellow";
-                }
-            }
+        if (trend === 'rising') {
+            vibe = "Rising Energy";
+        } else if (trend === 'falling') {
+            vibe = "Slowing Down";
+        } else if (currentScore > 0.5) {
+            vibe = "Energetic and Upbeat";
+        } else if (currentScore < 0) {
+            vibe = "Calm and Mellow";
         }
         
-        // Extract songs from the recommendation
+        // Get songs from playlist
         let songs = [];
-        if (data.recommendation && data.recommendation.next_songs) {
-            songs = data.recommendation.next_songs.map(song => ({
+        if (stateData.playlist && stateData.playlist.length > 0) {
+            songs = stateData.playlist.map(song => ({
                 title: song.title,
                 artist: song.artist
             }));
+            console.log(`Found ${songs.length} songs in current playlist`);
+        } else {
+            console.log('Playlist is empty');
         }
         
-        // Fallback to dummy data if no songs returned
+        // Try to call Gemini if enough time has passed (won't fail if too soon)
+        let geminiCalled = false;
+        try {
+            const geminiResponse = await fetch('http://127.0.0.1:5000/gemini-recommend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (geminiResponse.ok) {
+                const geminiData = await geminiResponse.json();
+                console.log('✅ Gemini recommendations received:', geminiData);
+                geminiCalled = true;
+                
+                // Update vibe based on Gemini recommendation if available
+                if (geminiData.recommendation && geminiData.recommendation.action) {
+                    const action = geminiData.recommendation.action.recommendation;
+                    if (action === "increase_energy") {
+                        vibe = "Rising Energy";
+                    } else if (action === "wind_down") {
+                        vibe = "Slowing Down";
+                    } else if (action === "maintain_energy") {
+                        vibe = currentScore > 0.5 ? "Energetic and Upbeat" : "Calm and Mellow";
+                    }
+                    console.log(`Vibe updated from Gemini: ${vibe}`);
+                }
+                
+                // Get fresh playlist after Gemini added songs
+                const newStateResponse = await fetch('http://127.0.0.1:5000/party-state');
+                if (newStateResponse.ok) {
+                    const newStateData = await newStateResponse.json();
+                    if (newStateData.playlist && newStateData.playlist.length > 0) {
+                        songs = newStateData.playlist.map(song => ({
+                            title: song.title,
+                            artist: song.artist
+                        }));
+                        console.log(`✅ Updated playlist: ${songs.length} songs total`);
+                    }
+                }
+                
+                showNotification(`🤖 Gemini added ${geminiData.songs_added || 0} new songs!`);
+            } else if (geminiResponse.status === 429) {
+                // Too soon to call Gemini - that's fine
+                console.log('⏰ Gemini cooldown active, using current playlist');
+            } else {
+                console.log(`Gemini response status: ${geminiResponse.status}`);
+            }
+        } catch (geminiError) {
+            console.log('Gemini call skipped:', geminiError.message);
+        }
+        
+        // Fallback to seed songs if playlist is empty
         if (songs.length === 0) {
             songs = [
-                { title: "Electric Dreams", artist: "Synthwave Collective" },
-                { title: "Midnight Runner", artist: "Neon Pulse" },
-                { title: "Ocean Breeze", artist: "Coastal Vibes" }
+                { title: "O Saathi", artist: "Atif Aslam" },
+                { title: "Samjhawan", artist: "Jawad Ahmad" },
+                { title: "Duniyaa", artist: "Akhil" },
+                { title: "Haule Haule", artist: "Salim–Sulaiman" },
+                { title: "Bolna", artist: "Tanishk Bagchi" }
             ];
         }
         
         return {
             vibe: vibe,
-            songs: songs
+            songs: songs.slice(0, 10) // Show top 10 songs
         };
         
     } catch (error) {
         console.error('Error fetching vibe and songs:', error);
         
-        // Fallback to dummy data on error
+        // Fallback to demo data on error
         const vibes = ["Energetic and Upbeat", "Calm and Mellow", "Rising Energy", "Slowing Down"];
         const randomVibe = vibes[Math.floor(Math.random() * vibes.length)];
         
         const dummySongs = [
-            { title: "Electric Dreams", artist: "Synthwave Collective" },
-            { title: "Midnight Runner", artist: "Neon Pulse" },
-            { title: "Ocean Breeze", artist: "Coastal Vibes" },
-            { title: "Starlight Symphony", artist: "Aurora Sound" },
-            { title: "Urban Nights", artist: "City Beats" }
+            { title: "O Saathi", artist: "Atif Aslam" },
+            { title: "Samjhawan", artist: "Jawad Ahmad" },
+            { title: "Duniyaa", artist: "Akhil" },
+            { title: "Haule Haule", artist: "Salim–Sulaiman" },
+            { title: "Bolna", artist: "Tanishk Bagchi" }
         ];
         
-        showNotification('⚠️ API unavailable, using fallback data');
+        showNotification('⚠️ Using offline mode with seed songs');
         
         return {
             vibe: randomVibe,
@@ -344,17 +413,32 @@ function addToQueue(songId) {
 function updateQueueDisplay() {
     const queueList = document.getElementById('queueList');
     
+    if (!currentQueue || currentQueue.length === 0) {
+        console.warn('⚠️ currentQueue is empty, cannot update display');
+        queueList.innerHTML = `
+        <div style="padding:20px; text-align:center; color:var(--muted);">
+            <p>🎵 Queue is empty</p>
+            <p style="font-size:14px; margin-top:8px;">Waiting for recommendations...</p>
+        </div>
+        `;
+        return;
+    }
+    
+    console.log(`📝 Updating queue display with ${currentQueue.length} songs`);
+    
     queueList.innerHTML = currentQueue.map((song, index) => `
     <div class="queue-item" role="listitem">
         <div class="idx">${index + 1}.</div>
         <div class="song">
         <div class="meta">
-            <div class="title">${song.title}</div>
-            <div class="artist">${song.artist}</div>
+            <div class="title">${song.title || 'Unknown'}</div>
+            <div class="artist">${song.artist || 'Unknown Artist'}</div>
         </div>
         </div>
     </div>
     `).join('');
+    
+    console.log('✅ Queue display updated successfully');
 }
 
 function showNotification(message) {
@@ -412,11 +496,64 @@ function endParty() {
         // Show ending notification
         showNotification('Ending party session...');
         
-        // Here you can add API call to end the session
-        // For now, we'll just redirect after a delay
-        setTimeout(() => {
-            // Redirect to home or login page
+        // Call reset endpoint
+        fetch('http://127.0.0.1:5000/reset-party', {
+            method: 'POST'
+        }).then(() => {
+            // Redirect to home page
             window.location.href = '/';
-        }, 2000);
+        }).catch(err => {
+            console.error('Error ending party:', err);
+            window.location.href = '/';
+        });
     }
 }
+
+// Initialize party on page load
+async function initializeParty() {
+    console.log('Initializing party...');
+    
+    // Add seed songs to playlist if empty
+    try {
+        const stateResponse = await fetch('http://127.0.0.1:5000/party-state');
+        const stateData = await stateResponse.json();
+        
+        // If playlist is empty, add seed songs
+        if (!stateData.playlist || stateData.playlist.length === 0) {
+            console.log('Playlist empty, adding seed songs...');
+            
+            const seedSongs = [
+                { title: "O Saathi", artist: "Atif Aslam", genre: "bollywood", source: "seed" },
+                { title: "Samjhawan", artist: "Jawad Ahmad", genre: "bollywood", source: "seed" },
+                { title: "Duniyaa", artist: "Akhil", genre: "punjabi pop", source: "seed" },
+                { title: "Haule Haule", artist: "Salim–Sulaiman", genre: "bollywood", source: "seed" },
+                { title: "Bolna", artist: "Tanishk Bagchi", genre: "bollywood", source: "seed" }
+            ];
+            
+            await fetch('http://127.0.0.1:5000/add-to-playlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ songs: seedSongs })
+            });
+            
+            console.log('Seed songs added to playlist');
+        }
+        
+        // Trigger first vibe check immediately
+        setTimeout(() => {
+            startVibeCheck();
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Error initializing party:', error);
+        // Still show the UI with fallback data
+        updateQueueDisplay();
+    }
+}
+
+// Call initialization when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    initializeParty();
+});
