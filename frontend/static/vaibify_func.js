@@ -542,7 +542,38 @@ async function initializeParty() {
     }
 }
 
+// Generate random QR code
+function generateRandomQRCode() {
+    // Generate a random party code (6 alphanumeric characters)
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let partyCode = '';
+    for (let i = 0; i < 6; i++) {
+        partyCode += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    
+    // Create the join URL
+    const joinUrl = `${window.location.origin}/join/${partyCode}`;
+    
+    // Clear previous QR code if exists
+    const qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = '';
+    
+    // Generate new QR code
+    new QRCode(qrContainer, {
+        text: joinUrl,
+        width: 120,
+        height: 120,
+        colorDark: "#1e1e1e",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    
+    console.log('Party join code:', partyCode);
+    console.log('Join URL:', joinUrl);
+}
+
 // Call initialization when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     initializeParty();
+    generateRandomQRCode();
 });

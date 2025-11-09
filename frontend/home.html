@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/vaibify_style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="static/vaibify_func.js" defer></script>
 
 </head>
@@ -50,6 +51,12 @@
         <div class="user">
           <div class="user-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
           Casey Morgan
+        </div>
+
+        <!-- QR Code Section -->
+        <div class="qr-code-container">
+          <div class="qr-code-label">Join the Party</div>
+          <div id="qrcode"></div>
         </div>
 
         <!-- End Party Button -->
