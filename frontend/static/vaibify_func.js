@@ -167,6 +167,14 @@
             // Update vibe
             window.setVibe(result.vibe);
             
+            // Restart animation with new vibe
+            const config = vibeConfigs[result.vibe || currentVibe];
+            if (animationInterval) {
+                clearInterval(animationInterval);
+            }
+            animateBars();
+            animationInterval = setInterval(animateBars, config.speed);
+            
             // Update queue with new songs
             if (result.songs && result.songs.length > 0) {
                 currentQueue = result.songs;
@@ -518,28 +526,9 @@ async function initializeParty() {
         const stateResponse = await fetch('http://127.0.0.1:5000/party-state');
         const stateData = await stateResponse.json();
         
-        // If playlist is empty, add seed songs
-        if (!stateData.playlist || stateData.playlist.length === 0) {
-            console.log('Playlist empty, adding seed songs...');
-            
-            const seedSongs = [
-                { title: "O Saathi", artist: "Atif Aslam", genre: "bollywood", source: "seed" },
-                { title: "Samjhawan", artist: "Jawad Ahmad", genre: "bollywood", source: "seed" },
-                { title: "Duniyaa", artist: "Akhil", genre: "punjabi pop", source: "seed" },
-                { title: "Haule Haule", artist: "Salim–Sulaiman", genre: "bollywood", source: "seed" },
-                { title: "Bolna", artist: "Tanishk Bagchi", genre: "bollywood", source: "seed" }
-            ];
-            
-            await fetch('http://127.0.0.1:5000/add-to-playlist', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ songs: seedSongs })
-            });
-            
-            console.log('Seed songs added to playlist');
-        }
+        // Playlist will be populated by integrated workflow or Gemini recommendations
+        // Don't auto-populate with hardcoded songs
+        console.log('Playlist initialized. Waiting for workflow to add songs...');
         
         // Trigger first vibe check immediately
         setTimeout(() => {

@@ -85,8 +85,9 @@ Edit `.env` to customize:
 GEMINI_API_KEY=your_key_here
 
 # Model Selection
-GEMINI_MODEL=gemini-1.5-flash        # Fast and cheap
-# GEMINI_MODEL=gemini-1.5-pro        # More intelligent but slower
+GEMINI_MODEL=gemini-2.5-flash        # Fast and cheap (recommended)
+# GEMINI_MODEL=gemini-2.5-pro        # More intelligent but slower
+# GEMINI_MODEL=gemini-2.0-flash      # Alternative fast model
 
 # Creativity Control
 GEMINI_TEMPERATURE=0.7               # 0.0 = conservative, 1.0 = creative

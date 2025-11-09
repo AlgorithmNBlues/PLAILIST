@@ -12,6 +12,7 @@ import json
 import numpy as np
 from dotenv import load_dotenv
 import google.generativeai as genai
+import requests
 
 # Load environment variables
 load_dotenv()
@@ -32,8 +33,12 @@ os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
 # Configure Gemini API
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 GEMINI_TEMPERATURE = float(os.getenv("GEMINI_TEMPERATURE", "0.7"))
+
+# Configure ElevenLabs TTS
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+ELEVEN_VOICE_ID = os.getenv("ELEVEN_VOICE_ID", "UpphzPau5vxibPYV2NeV")
 
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
@@ -144,6 +149,7 @@ def aggregate_probs(preds):
 W1, W2, W3, W4 = 1.0, 0.7, 0.6, 1.5
 SCORE_HISTORY = []
 WINDOW_SIZE = 5
+LAST_TTS_TIME = None  # Track last TTS to enforce cooldown
 
 def calculate_enthusiasm_score(probs):
     return (probs.get('cheering', 0)*W1 + 
@@ -247,6 +253,70 @@ def build_gemini_context():
     
     return context
 
+
+def trigger_energy_prompter(score, trend, state):
+    """HARDCODED TTS FOR DEMO - Use pre-generated TTS files"""
+    global LAST_TTS_TIME
+    
+    try:
+        # Cooldown check - 45 seconds
+        if LAST_TTS_TIME:
+            elapsed = (datetime.now() - LAST_TTS_TIME).total_seconds()
+            if elapsed < 45:
+                logging.info(f"⏸️  TTS cooldown active ({int(45-elapsed)}s remaining)")
+                return False
+        
+        # Path to pre-generated TTS files
+        tts_folder = os.path.join(
+            os.path.dirname(__file__), 
+            '..',
+            'PLAILIST-dj_voice',
+            'PLAILIST-dj_voice',
+            'dj-energy-prompter'
+        )
+        
+        # Get all TTS files
+        import glob
+        tts_files = glob.glob(os.path.join(tts_folder, 'tts_*.mp3'))
+        
+        if not tts_files:
+            logging.warning("❌ No pre-generated TTS files found")
+            return False
+        
+        # Pick a random TTS file
+        import random
+        selected_file = random.choice(tts_files)
+        filename = os.path.basename(selected_file)
+        
+        logging.info(f"🎤 TTS DEMO: Playing pre-generated audio: {filename}")
+        logging.info(f"   State: {state}, Score: {int(score * 100)}, Trend: {trend}")
+        
+        # Update last TTS time
+        LAST_TTS_TIME = datetime.now()
+        
+        # Play audio (background thread to not block)
+        import threading
+        import subprocess
+        def play_audio():
+            try:
+                # Use absolute path for playback
+                abs_path = os.path.abspath(selected_file)
+                # Use Windows default media player (simpler and works with MP3)
+                subprocess.run(['powershell', '-c', f'Start-Process "{abs_path}"'], check=False)
+                logging.info(f"✅ TTS playback started!")
+            except Exception as e:
+                logging.error(f"❌ Playback error: {e}")
+        
+        threading.Thread(target=play_audio, daemon=True).start()
+        return True
+            
+    except Exception as e:
+        logging.error(f"❌ TTS playback failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+        return False
+
 def call_gemini_api(context):
     """Query Gemini for song recommendations"""
     if not gemini_model:
@@ -315,7 +385,7 @@ IMPORTANT:
             prompt,
             generation_config=genai.types.GenerationConfig(
                 temperature=GEMINI_TEMPERATURE,
-                max_output_tokens=2000
+                max_output_tokens=4096
             )
         )
         
@@ -337,10 +407,23 @@ IMPORTANT:
         
     except json.JSONDecodeError as e:
         logging.error(f"Failed to parse Gemini response as JSON: {e}")
-        logging.error(f"Raw response: {response.text}")
-        return {"error": "Invalid JSON response from Gemini", "raw": response.text[:500]}
+        logging.error(f"Raw response length: {len(response.text)} chars")
+        logging.error(f"Raw response preview: {response.text[:1000]}")
+        
+        # Check if response was truncated
+        if "finish_reason" in dir(response):
+            logging.error(f"Finish reason: {response.finish_reason}")
+        
+        return {
+            "error": "Invalid JSON response from Gemini - response may be truncated", 
+            "details": str(e),
+            "raw_preview": response.text[:500],
+            "response_length": len(response.text)
+        }
     except Exception as e:
         logging.error(f"Gemini API call failed: {e}")
+        import traceback
+        traceback.print_exc()
         return {"error": str(e)}
 
 # ---------- Health check endpoint ----------
@@ -696,9 +779,13 @@ def gemini_recommend():
             }), 503
         
         if not SCORE_HISTORY:
+            logging.warning(f"⚠️ No crowd data in SCORE_HISTORY yet. Cannot call Gemini. (SCORE_HISTORY length: {len(SCORE_HISTORY)})")
             return jsonify({
                 'error': 'No crowd data available',
-                'message': 'Please analyze some audio first using /classify-audio'
+                'message': 'No audio reactions have been analyzed yet. The Flask server may have been restarted, clearing the score history.',
+                'score_history_length': len(SCORE_HISTORY),
+                'required_minimum': 1,
+                'hint': 'Make sure to analyze audio with /classify-audio before calling /gemini-recommend. If you recently restarted Flask, you need to re-analyze audio samples.'
             }), 400
         
         # Check if enough time has passed since last Gemini call (90 seconds minimum)
@@ -728,16 +815,41 @@ def gemini_recommend():
         
         # Add recommended songs to playlist queue
         if "next_songs" in recommendation:
+            logging.info(f"📝 Gemini returned {len(recommendation['next_songs'])} songs")
             for song in recommendation["next_songs"]:
-                PARTY_STATE["playlist"].append({
+                song_data = {
                     "title": song.get("title"),
                     "artist": song.get("artist"),
                     "genre": song.get("genre"),
                     "added_at": datetime.now().isoformat(),
                     "predicted_score": song.get("predicted_impact", {}).get("expected_score"),
                     "reasoning": song.get("reasoning")
-                })
-            logging.info(f"Added {len(recommendation['next_songs'])} songs to playlist queue")
+                }
+                PARTY_STATE["playlist"].append(song_data)
+                logging.info(f"  ✓ Added: {song_data['title']} by {song_data['artist']}")
+            logging.info(f"✅ Added {len(recommendation['next_songs'])} songs to playlist queue (total: {len(PARTY_STATE['playlist'])})")
+        else:
+            logging.warning(f"⚠️ No 'next_songs' key in Gemini recommendation. Keys: {recommendation.keys()}")
+        
+        # Trigger Energy Prompter TTS after recommendations
+        logging.info("=" * 60)
+        logging.info("🎵 TRIGGERING ENERGY PROMPTER FOR TTS")
+        logging.info("=" * 60)
+        
+        current_score = SCORE_HISTORY[-1] if SCORE_HISTORY else 0.0
+        current_trend = detect_trend()
+        party_stage = calculate_party_stage(
+            (datetime.now() - PARTY_STATE["start_time"]).seconds // 60,
+            np.mean(SCORE_HISTORY[-20:]) if len(SCORE_HISTORY) >= 20 else current_score,
+            current_trend
+        )
+        # Map party stage to energy prompter state
+        state_map = {"early": "warmup", "mid": "peak", "peak": "peak", "late": "cooldown"}
+        energy_state = state_map.get(party_stage, "warmup")
+        
+        logging.info(f"Energy prompter params: score={current_score:.2f}, trend={current_trend}, state={energy_state}")
+        trigger_energy_prompter(current_score, current_trend, energy_state)
+        logging.info("=" * 60)
         
         # Return full recommendation with updated playlist
         result = {
@@ -854,6 +966,80 @@ def reset_party():
         
     except Exception as e:
         logging.error(f"Error in reset_party: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/update-song', methods=['POST'])
+def update_song():
+    """Track currently playing song or end song"""
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+        
+        # Check if ending a song
+        if data.get('action') == 'end_song':
+            if 'current_song' in PARTY_STATE:
+                ended_song = PARTY_STATE.pop('current_song', None)
+                
+                # Calculate song performance metrics
+                song_start_idx = ended_song.get('start_score_index', len(SCORE_HISTORY))
+                song_scores = SCORE_HISTORY[song_start_idx:]
+                
+                if song_scores:
+                    avg_score = float(np.mean(song_scores))
+                    peak_score = float(np.max(song_scores))
+                    
+                    # Determine outcome based on average score
+                    if avg_score >= 0.7:
+                        outcome = 'hit'
+                    elif avg_score >= 0.4:
+                        outcome = 'good'
+                    elif avg_score >= 0.0:
+                        outcome = 'okay'
+                    else:
+                        outcome = 'skip'
+                else:
+                    avg_score = 0.0
+                    peak_score = 0.0
+                    outcome = 'unknown'
+                
+                song_record = {
+                    'title': ended_song.get('title', 'Unknown'),
+                    'artist': ended_song.get('artist', 'Unknown'),
+                    'avg_reaction_score': round(avg_score, 2),
+                    'peak_reaction': round(peak_score, 2),
+                    'outcome': outcome,
+                    'num_reactions': len(song_scores)
+                }
+                
+                logging.info(f"📊 Ended song: {song_record['title']} by {song_record['artist']}")
+                logging.info(f"   Avg: {avg_score:.2f} | Peak: {peak_score:.2f} | Outcome: {outcome} | Reactions: {len(song_scores)}")
+                
+                return jsonify({
+                    'status': 'Song ended',
+                    'song': ended_song,
+                    'song_record': song_record
+                })
+            else:
+                return jsonify({'status': 'No song was playing'}), 200
+        
+        # Starting/updating current song
+        song = data.get('song')
+        if song:
+            # Record the current score history index so we can calculate metrics later
+            song['start_score_index'] = len(SCORE_HISTORY)
+            PARTY_STATE['current_song'] = song
+            logging.info(f"Now playing: {song.get('title')} by {song.get('artist')} (starting at score index {song['start_score_index']})")
+            return jsonify({
+                'status': 'Song tracking started',
+                'song': song
+            })
+        
+        return jsonify({'error': 'Invalid request format'}), 400
+        
+    except Exception as e:
+        logging.error(f"Error in update_song: {e}")
         return jsonify({'error': str(e)}), 500
 
 # ---------- Frontend Routes ----------

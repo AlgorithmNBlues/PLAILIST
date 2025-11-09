@@ -1,4 +1,5 @@
 flask
+flask-cors
 transformers
 torch
 torchaudio
@@ -11,5 +12,4 @@ python-dotenv
 numpy
 pyaudio
 keyboard
-wave
 

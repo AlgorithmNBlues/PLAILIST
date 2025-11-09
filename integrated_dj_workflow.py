@@ -95,6 +95,19 @@ class IntegratedDJSystem:
         # Get seed songs
         self.seed_songs = self.initializer.generate_seed_playlist(5)
         
+        # Add seed songs to Flask playlist
+        try:
+            response = requests.post(
+                f"{FLASK_SERVER}/add-to-playlist",
+                json={"songs": self.seed_songs}
+            )
+            if response.status_code == 200:
+                print(f"✅ Added {len(self.seed_songs)} seed songs to Flask playlist")
+            else:
+                print(f"⚠️  Failed to add seed songs to Flask: {response.text}")
+        except Exception as e:
+            print(f"❌ Error adding seed songs to Flask: {e}")
+        
         print(f"✅ Initialization complete! Ready to play {len(self.seed_songs)} seed songs\n")
         self.phase = "seed_playlist"
         return True
@@ -268,10 +281,19 @@ class IntegratedDJSystem:
                 print("\n" + "="*70 + "\n")
                 
                 return recommendation
+            elif response.status_code == 400:
+                error_data = response.json()
+                print(f"\n❌ Cannot get recommendations yet:")
+                print(f"   {error_data.get('message', 'Unknown error')}")
+                print(f"   Hint: {error_data.get('hint', 'N/A')}")
+                return None
             else:
-                print(f"❌ Failed to get recommendations: {response.text}")
+                print(f"❌ Failed to get recommendations (HTTP {response.status_code}): {response.text}")
+                return None
         except Exception as e:
             print(f"❌ Error getting Gemini recommendations: {e}")
+            import traceback
+            traceback.print_exc()
         
         return None
     
