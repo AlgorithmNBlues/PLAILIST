@@ -1,0 +1,15 @@
+flask
+flask-cors
+transformers
+torch
+torchaudio
+requests
+scipy
+soundfile
+pydub
+google-generativeai
+python-dotenv
+numpy
+pyaudio
+keyboard
+

@@ -1,0 +1,40 @@
+# Environment variables (NEVER commit these!)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ub_hacking/
+env/
+ENV/
+
+# Temporary files
+temp.*
+*.tmp
+
+# Session data
+sessions/
+*.db
+*.sqlite
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model cache (large files)
+*.pt
+*.bin
+models/
+
+# Logs
+*.log

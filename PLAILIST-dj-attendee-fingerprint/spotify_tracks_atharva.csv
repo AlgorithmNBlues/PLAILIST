@@ -1,0 +1,316 @@
+user_id,user_name,track_id,track_name,artist_names,genres,album_name,release_date,popularity,duration_ms,explicit
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4pw7EuK2WTWGHI51jCKuGJ,"Akuma no Ko","Ai Higuchi","anime; j-pop","Saiaku Saiai",2022-03-02,61,229960,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1n1y2kFPISpF9WGD3JaFo5,"Suzume","RADWIMPS; Toaka","anime; j-pop; j-rock","Suzume (Motion Picture Soundtrack)",2022-11-10,70,238560,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0ac12GgX8LZK0VNC4N91o2,"Yoku","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","Kaizin",2022-03-16,43,168209,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0MIjWSye2T6s1y3HYP8j0Y,"夜中のキスミ","ZUTOMAYO","j-pop; j-rock; anime; japanese indie","伸び仕草懲りて暇乞い",2022-02-15,40,275413,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3BsvhBG7BATLlLWJ4AYtP3,"シルエット (TOKYO MACHINE Remix) - SACRA BEATS Singles","KANA-BOON; Tokyo Machine","anime; j-rock; j-pop; dubstep","シルエット (TOKYO MACHINE Remix) - SACRA BEATS Singles",2021-09-03,31,209294,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1R8Md1Ol88i2Ilm7qpMXZk,"インスタントヘヴン","NANAOAKARI; Eve","vocaloid; j-pop; anime; j-rock; japanese indie","フライングベスト〜知らないの？巷で噂のダメ天使〜",2018-10-02,42,230000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2j0ciOTb4aRR84PGKZ4o0K,"アンビバレント","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","おとぎ",2019-02-06,33,221867,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",65LUiqfnSGLbOrUnAzXfpW,"平行線","Eve; suis from Yorushika","anime; j-pop; j-rock; vocaloid; japanese indie","平行線",2021-02-05,41,275090,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6zvnmyKMWPhpJWxk2DSerR,"ナンセンス文学","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","文化",2017-12-20,46,203760,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2y0yxEHUV3HZz86T6iXRNU,"蒼のワルツ","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","廻廻奇譚 / 蒼のワルツ",2020-12-23,37,277336,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4ZLzg558mV4hh6Ric18rnE,"ふりをした。","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","文化",2017-12-20,32,235386,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3B2aRA1azOMuxtfA0JutD7,"お気に召すまま","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","文化",2017-12-20,48,246712,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6AqUfxCSfhoQdmykOZZVTM,"デーモンダンストーキョー","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","OFFICIAL NUMBER",2016-10-19,39,240319,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3oaj1uws6MQyjlmkKS6ABt,"ナンセンス文学","Eve; Sou","anime; j-pop; j-rock; vocaloid; japanese indie","蒼",2018-03-07,30,205331,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1ldV0oN7wB0NeeSz3PSp4l,"あの娘シークレット","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","文化",2017-12-20,45,233151,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5mf9TE1ZyuTj5kaKkNUkbn,"杪夏","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","廻廻奇譚 / 蒼のワルツ",2020-12-23,30,244364,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",44i0yotEYW72i9QbpWcn6y,"ドラマツルギー","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","文化",2017-12-20,55,238180,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6wpRCHsYlbiTiqIR4gsM9H,"君に世界","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","おとぎ",2019-02-06,37,235175,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2G4pRFifFAlzozdqOq56uw,"僕らまだアンダーグラウンド","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","おとぎ",2019-02-06,41,284338,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4jyX4FfzhIvJqnTaGPUkk4,"LEO","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","Smile",2020-02-12,34,247413,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1eb9Vvbbk2OgI0CbyMmBkw,"群青讃歌","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","群青讃歌 / 遊生夢死",2021-09-30,37,275265,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7znz9Gm1qXs5wOXwOGQqZR,"藍才","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","藍才",2021-12-03,34,256212,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1uBkB3NhlPlJAQqyM7m2Fe,"トーキョーゲットー","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","おとぎ",2019-02-06,40,240323,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",44VYdLnwvhn1H1cfieb84a,"Shinkai","Eve","anime; j-pop; j-rock; vocaloid; japanese indie","Kaikai Kitan / Ao No Waltz",2020-12-23,49,266308,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4BE1OloRc9xwjyqA4wFFuN,"あの夢をなぞって","YOASOBI","j-pop; anime","あの夢をなぞって",2020-01-18,60,242666,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3dPtXHP0oXQ4HCWHsOA9js,"夜に駆ける","YOASOBI","j-pop; anime","夜に駆ける",2019-12-15,69,261013,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",62Lv9WcrfzJqhvYDbilJy3,"たぶん","YOASOBI","j-pop; anime","たぶん",2020-07-20,62,258666,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5CtArajR4i0jOv4j8yzcfu,"Clockwerk","Xiuhtezcatl","native american music","Break Free",2018-10-05,0,214253,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4DHRbvvQyC3mBa3Y0JNl4n,"Make Me Move","Culture Code; Karra","melodic bass; future bass","Make Me Move",2016-12-13,0,197052,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1J14CdDAvBTE1AJYUOwl6C,"Arcade","Duncan Laurence","","Small Town Boy (Track By Track)",2020-11-12,75,185146,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2MJz8BxxMsERULatmBikDH,"At My Worst","Pink Sweat$","","PINK PLANET",2021-02-12,0,170344,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1qDrWA6lyx8cLECdZE7TV7,"Somebody That I Used To Know","Gotye; Kimbra","","Making Mirrors",2011-01-01,81,244884,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5gQTdwbLvhRHtMcyWxl3y2,"Good Riddance (Eurydice Solo)","Darren Korb; Ashley Barrett","soundtrack","Hades: Original Soundtrack",2020-09-16,45,177322,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1gUAX2ImxDsB3YDcyxMXlB,"カワキヲアメク","美波","anime; j-pop; j-rock","カワキヲアメク",2019-01-30,1,251933,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1tjOClAkdMxDfYPO0xvGbG,"THE DAY","PornoGraffitti","anime; j-pop; j-rock","Butterfly Effect",2017-10-25,63,241626,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1g0SlTCGN9j3OicWHfSKEn,"the WORLD","NIGHTMARE","visual kei; anime; j-rock","the WORLD Ruler",2007-02-28,1,228120,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3mScGCzxiXA9OaHdBeuk7O,"crossing field","LiSA","anime; j-pop; j-rock","LANDSPACE",2013-10-30,1,248946,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",70p3HYq9iHZisJqpDmWd1U,"Guren no Yumiya","Linked Horizon","anime; j-pop","Shingeki no Kiseki",2017-05-17,64,310680,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5orAKrVdrk1kPtTa7zNvYL,"unravel","TK from Ling tosite sigure","anime; j-rock; j-pop","Fantastic Magic",2014-08-27,1,238360,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1cOyWWUr3oXJIxY0AjJEx9,"YOUTH","Troye Sivan","","Blue Neighbourhood (Deluxe)",2015-12-04,58,185194,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2iUXsYOEPhVqEBwsqP70rE,"Youngblood","5 Seconds of Summer","","Youngblood (Deluxe)",2018-06-15,81,203417,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",11VApNQCWLJdzxWrlmwzUa,"Say So (feat. Nicki Minaj)","Doja Cat; Nicki Minaj","","Say So (feat. Nicki Minaj)",2020-05-01,55,206220,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4nna9JONFIwr98bcX6tlta,"Sincerely, Me","Mike Faist; Ben Platt; Will Roland","musicals","Dear Evan Hansen (Original Broadway Cast Recording)",2017-02-03,62,222960,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7FjnFOfObgTCHsfrSVEfQO,"Tola Tola","Amitraj; Bela Shende; Guru Thakur","marathi pop; devotional","Tu Hi Re (Original Motion Picture Soundtrack)",2015-01-01,58,207960,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4miR4hZGvWN98NT8bvDRut,"Aabhas Ha","Rahul Vaidya; Vaishali Samant","marathi pop; gujarati garba; gujarati pop; desi pop","Yanda Kartavya Aahe",2006-04-20,0,294173,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1fipvP2zmef6vN2IwXfJhY,"I’m Ready (with Demi Lovato)","Sam Smith; Demi Lovato","soft pop","I’m Ready (with Demi Lovato)",2020-04-16,50,200838,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4HDCLYli2SUdkq9OjmvhSD,"BELIEVE IT","PARTYNEXTDOOR; Rihanna","dark r&b; r&b; trap soul","PARTYMOBILE",2020-03-27,0,183219,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4TnjEaWOeW0eKTKIEvJyCa,"Falling","Trevor Daniel","","Falling",2018-10-05,2,159381,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7eJMfftS33KTjuF7lTsMCx,"death bed (coffee for your head)","Powfu; beabadoobee","bedroom pop","death bed (coffee for your head)",2020-02-08,81,173333,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6WrI0LAC5M1Rw2MnX2ZvEg,"Don't Start Now","Dua Lipa","pop","Don't Start Now",2019-10-31,73,183290,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7uzmGiiJyRfuViKKK3lVmR,"Mine","Bazzi","","COSMIC",2018-04-12,71,131064,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0BgRaFy7qnwT1PuUmSTFkf,"Stereo Hearts (feat. Adam Levine)","Gym Class Heroes; Adam Levine","","Stereo Hearts (feat. Adam Levine)",2011-06-14,48,210960,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",52okn5MNA47tk87PeZJLEL,"Let You Down","NF","christian hip hop","Perception",2017-10-06,78,212120,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7EahmWx3WvHXV4sn2KZIsH,"Gondhal","Shahir Sable; Ajay","marathi pop; devotional","Aga Bai Arechya (Original Motion Picture Soundtrack)",2005-01-18,0,344466,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3pCg29CErkhjvJfEpuJoZx,"Chimbh Bhijalele - From ""Bandh Premache""","Shankar Mahadevan; Priti Kamath","marathi pop; bollywood; devotional; bhajan; desi; tamil dance; hindi pop","Ajay - Atul Hits",2014-10-29,53,321000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0qsFwFCOKiBJqjz2yofAFJ,"Sunya Sunya","Ketaki Mategaonkar; Adarsh Shinde","marathi pop","Timepass 2 (Original Motion Picture Soundtrack)",2015-04-06,0,315219,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7E1jOSacmWyEfkNsOVIUgE,"Galavar Khali","Swapnil Bandodkar","marathi pop","Bedhund",2003-12-31,0,345572,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5tG2nv8GjMZQ0gzqyngyTC,"Varyavarti Gandh - From ""Savarkhed Ek Gaon""","Kunal Ganjawala","kannada pop; marathi pop; bangla pop; bollywood; sandalwood","Ajay - Atul Hits",2014-10-29,49,294672,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5U0RA7yjcquso2b89cusfZ,"Durge Durghat Bhari","Chorus; Ajay","devotional; bhajan; tamil dance; marathi pop","Aga Bai Arrechya",2005-01-01,0,301413,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6Shj4D7XSs2EARpDbKrphw,"Radha Hi Bavari","Swapnil Bandodkar","marathi pop","Tu Mazha Kinara",2005-11-01,0,311453,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1as3se3lgcMyc3fv5ZqSiP,"Kadhi Tu","Hrishikesh Ranade","marathi pop","Mumbai Pune Mumbai",2010-06-11,0,338394,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4hPpVbbakQNv8YTHYaOJP4,"One Thing Right","Marshmello; Kane Brown","edm; country; pop country","One Thing Right",2019-06-21,4,181823,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7mkT9kS25nUIoNkm02Ww0n,"These Days (feat. Jess Glynne, Macklemore & Dan Caplen)","Rudimental; Jess Glynne; Macklemore; Dan Caplen","","Toast to Our Differences (Deluxe Edition)",2019-01-25,60,211760,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6hmhG1b4LEyNuashVvuIAo,"Never Forget You","Zara Larsson; MNEK","","So Good",2017-03-17,77,213427,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7vu0JkJh0ldukEYbTVcqd0,"Issues","Julia Michaels","","Nervous System",2017-07-28,73,176320,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3cNjgVBKTJ1SvKhunrCdVy,"Please Don't Go","Joel Adams","","Please Don't Go",2015-11-06,62,210580,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0uyZ5ckiIUbFZd3P6RWmrj,"Hide Away","Daya","","Sit Still, Look Pretty",2016-10-07,0,192376,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3AGOgQzp0YcPH41u9p7dOp,"Glad You Came","The Wanted","","The Wanted (Special Edition)",2012-01-01,59,198186,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6kPJZM97LwdG9QIsT7khp6,"Solo (feat. Demi Lovato)","Clean Bandit; Demi Lovato","","Solo (feat. Demi Lovato)",2018-05-17,68,222653,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5Z3GHaZ6ec9bsiI5BenrbY,"Young Dumb & Broke","Khalid","","American Teen",2017-04-27,81,202546,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6uBhi9gBXWjanegOb2Phh0,"Stay","Zedd; Alessia Cara","edm","Stay",2017-02-23,76,210090,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1iQDltZqI7BXnHrFy4Qo1k,"Trampoline (with ZAYN)","SHAED; ZAYN","","Trampoline (with ZAYN)",2019-09-26,29,184280,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5cF0dROlMOK5uNZtivgu50,"Attention","Charlie Puth","soft pop; pop","Voicenotes",2018-05-11,87,208786,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6DG2g1UhROp5pnM8fx7zH2,"Starving","Hailee Steinfeld; Grey; Zedd","edm","HAIZ",2016-07-15,0,181880,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",09IStsImFySgyp0pIQdqAc,"The Middle","Zedd; Maren Morris; Grey","edm; country","The Middle",2018-01-23,77,184732,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1EzrEOXmMH3G43AXT1y7pA,"I'm Yours","Jason Mraz","soft pop; acoustic pop","We Sing. We Dance. We Steal Things.",2008-05-12,77,242946,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2kJwzbxV2ppxnQoYw4GLBZ,"If the World Was Ending (feat. Julia Michaels)","JP Saxe; Julia Michaels","","If the World Was Ending (feat. Julia Michaels)",2019-10-17,73,208687,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4PV0uE5pZSh44E3NqNNDEH,"Selfish","Madison Beer","","Selfish",2020-02-14,57,223270,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2nC3QhMI9reBIOWutbU3Tj,"Moral of the Story","Ashe","","Moral of the Story",2019-02-14,72,201083,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",24Yi9hE78yPEbZ4kxyoXAI,"Roses - Imanbek Remix","SAINt JHN; Imanbek","slap house","Roses (Imanbek Remix)",2019-10-09,74,176840,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2ZTYlnhhV1UAReg7wIGolx,"To Die For","Sam Smith","soft pop","To Die For",2020-02-14,58,193795,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7crplFzt7spG80NCbpmuCp,"I Know What You Did Last Summer","Shawn Mendes; Camila Cabello","","Handwritten (Revisited)",2015-11-20,0,223826,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",07ipXN6CNTw34qwSYePKpg,"Summer on You","PRETTYMUCH","","Summer on You",2018-06-21,52,205791,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2VxeLyX666F8uXCJ0dZF8B,"Shallow","Lady Gaga; Bradley Cooper","art pop; pop","A Star Is Born Soundtrack",2018-10-05,84,215733,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1NOeZ7ZIVKMebuza26rofd,"Because You Loved Me (Theme from ""Up Close and Personal"")","Céline Dion","variété française","Falling Into You",1996-02-28,0,273666,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1mpD5Q8IM32I4bF6eCpU74,"Up All Night","Khalid","","Up All Night",2019-11-14,53,157220,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4ODnJrz0C3AJ4DFv8YQhJ8,"Sunrise (feat. Jason Walker)","Kygo; Jason Walker","tropical house","Kids in Love",2017-11-03,59,214826,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3SaIsrEzrQGDcG1jCeaK8q,"Bang Bang","Jessie J; Ariana Grande; Nicki Minaj","pop","Sweet Talker (Deluxe Version)",2014-10-10,2,199386,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7MZF7YLxOP2to9iblSulLc,"Modern Loneliness","Lauv","","~how i'm feeling~",2020-02-20,0,252337,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6rrTr2HEAzlpC4KWZxF3S1,"Woman Like Me (feat. Nicki Minaj)","Little Mix; Nicki Minaj","","Woman Like Me (feat. Nicki Minaj)",2018-10-12,53,228206,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3plMTgQW4Cdic8ECKwvXwo,"not ur friend","Jeremy Zucker","","not ur friend",2020-02-28,0,174520,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",37f4ITSlgPX81ad2EvmVQr,"Fight Song","Rachel Platten","","Wildfire",2016-01-01,73,204013,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0upFohXrGxIIAjyaJmCkMU,"Tokyo Drift (Fast & Furious) - From ""The Fast And The Furious: Tokyo Drift"" Soundtrack","Teriyaki Boyz","","Tokyo Drift (Fast & Furious)",2006-01-01,73,255946,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0iKRUwpIAIWQwPqRscG6dE,"Man Udhan Varyache","Shankar Mahadevan","marathi pop; bollywood; devotional; bhajan; desi; tamil dance; hindi pop","Aga Bai Arechya (Original Motion Picture Soundtrack)",2005-01-18,0,280099,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0sf12qNH5qcw8qpgymFOqD,"Blinding Lights","The Weeknd","","Blinding Lights",2019-11-29,22,201573,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3GRSqlALWISqLeNncZMbpX,"Mean It","Lauv; LANY","","~how i'm feeling~",2019-11-14,0,232853,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2usxQITOSDqvkYiI0oIwao,"You should be sad","Halsey","","You should be sad",2020-01-10,0,205473,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7HMmFQsKsljwTw8bS7lu19,"Rare","Selena Gomez","","Rare",2020-01-10,58,220589,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2b8fOow8UzyDFAE27YhOZM,"Memories","Maroon 5","pop","Memories",2019-09-20,33,189486,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",63VyEdzMM3w4ZQ1WtARa2S,"Takeaway (feat. Lennon Stella)","The Chainsmokers; ILLENIUM; Lennon Stella","melodic bass; future bass; edm; techno","World War Joy...Push My Luck",2019-11-08,0,209893,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0t3ZvGKlmYmVsDzBJAXK8C,"Goodbyes (feat. Young Thug)","Post Malone; Young Thug","rap; melodic rap; trap","Hollywood's Bleeding",2019-09-06,76,174853,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0d2iYfpKoM0QCKvcLCkBao,"Eastside (with Halsey & Khalid)","benny blanco; Halsey; Khalid","","Eastside (with Halsey & Khalid)",2018-07-12,72,173799,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0n2nEtLP3OzDdi12ziIekx,"SOS","Avicii; Aloe Blacc","edm","SOS (feat. Aloe Blacc)",2019-04-10,56,157202,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6LsAAHotRLMOHfCsSfYCsz,"If I Can't Have You","Shawn Mendes","","If I Can't Have You",2019-05-03,65,190800,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0rTV5WefWd1J3OwIheTzxM,"Talk","Khalid; Disclosure","house","Talk",2019-02-07,63,197487,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4wN8Ov3kPZdkJ8XcYxYUGz,"One Jump Ahead","Brad Kane; Disney","","Aladdin (Original Motion Picture Soundtrack)",1992-01-01,56,142440,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5BAQ5U2qWPKecbDYtH7WUB,"Can You Feel the Love Tonight","Pentatonix","christmas","Can You Feel the Love Tonight",2019-07-18,48,247225,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7kqCbVG93MnBnkRGiKWTPs,"I Still Wait For You","XYLØ","","I Still Wait For You",2017-03-10,34,244940,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",39LRXm8xZ3DP2W37sl1NDj,"Are We There Yet","Timeflies; Chase Rice","country; acoustic country","Are We There Yet",2017-07-28,0,210827,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",01iyINEYgPQ7ThMZuHUsqS,"First Love","Lost Kings; Sabrina Carpenter","pop","First Love",2017-10-13,43,207427,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0mtmrbRFsectINNpHdDkUQ,"Just Imagine It","MKTO","","Bad Girls EP",2015-07-24,48,250746,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0kzw2tRyuL9rzipi5ntlIy,"Shut Up and Dance","WALK THE MOON","","TALKING IS HARD (Expanded Edition)",2014-12-02,60,199080,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2DpCdPMg1BADE4HDnxt3Rd,"Sit Still, Look Pretty","Daya","","Sit Still, Look Pretty",2017-01-06,0,202226,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6JY1IdkZGeIcPegKxjSKeb,"Since U Been Gone","Kelly Clarkson","christmas","Breakaway",2004,74,188960,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5KpBYmEiClvljtwbjEhIJq,"Don't Say Goodnight","Hot Chelle Rae","","Don't Say Goodnight",2014-02-08,40,211813,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3Nbcx1svCSzmyYG2I81YCZ,"Up (feat. Demi Lovato)","Olly Murs; Demi Lovato","","Never Been Better (Deluxe)",2014-11-21,0,224293,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",37sINbJZcFdHFAsVNsPq1i,"Superheroes","The Script","","No Sound Without Silence",2014-09-15,76,245466,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6zoG4qagYh0UGIYwWOpE1z,"Honey, I'm Good","Andy Grammer","","Magazines or Novels",2015-10-09,0,199253,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1fQ8klMjoSHED4xUSFIkcT,"Whistle Stop - From ""Robin Hood""","Roger Miller","classic country","Disney Classics",2013-01-01,0,91546,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7xG1fakElLbxwyr9eyGEK6,"Colors Of The Wind - End Title","Vanessa Williams","","Pocahontas",1995-01-01,44,257866,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0qxtQ8rf3W1nId3D2r0xH4,"I Just Can't Wait to Be King","Jason Weaver; Rowan Atkinson; Laura Williams","","The Lion King",1994-01-01,70,170880,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1CQWhOlFQFn3je1Q05SDAm,"Can You Feel the Love Tonight - From ""The Lion King"" / Soundtrack Version","Joseph Williams; Sally Dworsky; Nathan Lane; Ernie Sabella; Kristle Edwards","","Disney's Greatest Vol. 3",2002-08-20,27,177880,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7rmClvTK7B8qO8cRGr3btT,"Be Our Guest - From ""Beauty and the Beast""/Soundtrack","Angela Lansbury; Jerry Orbach; Chorus - Beauty And the Beast","","Beauty And The Beast (Soundtrack)",1991-01-01,0,224733,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5wfU3eM43UptY57VigdHzh,"Be Free","Vidya Vox","tamil indie; tamil pop; tamil hip hop","Kuthu Fire",2017-08-18,0,207604,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2S6N9pbnkhQRyAx80HmF79,"Banjaara (From ""Ek Villain"")","Mohammed Irfan","hindi pop; bollywood","Best Of Shraddha Kapoor",2017-03-03,60,336567,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5DUDLaokWUsRbU8XLuQM2y,"Yaara Teri Yaari","Darshan Raval","gujarati garba; hindi pop; gujarati pop; bollywood; desi pop; desi","Four More Shots Please! (Original Series Soundtrack)",2019-01-28,50,207000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",46dgEyMQRTp60Kvw5k5yLt,"Laal Ishq","Arijit Singh","hindi pop; bollywood; desi; bangla pop","Ravishing Deepika",2015-11-03,0,387169,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1mYcukuz7uow0wc7DmPXHU,"Rozana","Shreya Ghoshal; Rochak Kohli; Manoj Muntashir","bollywood; hindi pop; desi; kannada pop; marathi pop; bhajan; devotional","Rozana (From ""Naam Shabana"")",2017-03-03,58,274201,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4e9dIemIXO8Tzg0k4aWujk,"Raabta (Title Track) [From ""Raabta""]","Pritam; Arijit Singh; Nikhita Gandhi","bollywood; hindi pop; desi; bangla pop","Raabta (Title Track) [From ""Raabta""]",2017-05-02,56,297158,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1lWjvbQWru7XPekvQGiKv5,"Sajna Ve","Vishal Mishra; Lisa Mishra","bollywood; hindi pop; desi pop; indian indie","Sajna Ve",2019-05-20,45,197857,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0xkGTPTijMU84dtHr3KQQi,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6fNhZRFEkBfgW39W3wKARJ,"Pompeii","Bastille","","Bad Blood",2013-01-01,77,214147,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5Gu0PDLN4YJeW75PpBSg9p,"Let Me Go (with Alesso, Florida Georgia Line & watt)","Hailee Steinfeld; Alesso; Florida Georgia Line; WATT","edm; country; pop country; acoustic country","Let Me Go (with Alesso, Florida Georgia Line & watt)",2017-09-08,70,174800,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5N693kH1M3TALVok9KNlag,"Again (Your Lie in April - Ghibli Piano and Violin)","Seycara Orchestral","orchestral","Again (Your Lie in April - Ghibli Piano and Violin)",2018-03-02,0,212473,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0VICzaRdctD8XGfDstBjQY,"Your Lie in April - Medley","AmaLee","anime","Your Lie in April - Medley",2015-09-08,0,368767,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4kAAko5kg70EjAWGF2ViWW,"光るなら","Goose house","anime; j-pop","Milk",2015-04-06,0,252133,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6fScgF2Y63ScU73nYju0ny,"O Saathi","Atif Aslam; Arko","bollywood; hindi pop; desi; sufi; qawwali; bangla pop; desi pop","O Saathi (From ""Baaghi 2"")",2018-03-09,75,251818,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",00RBUC7CPnPntU3Ps320uU,"Sahiba (From ""Phillauri"")","Shashwat Sachdev; Romy; Pawni Pandey","indian indie; bollywood; sufi; hindi indie; hindi pop; desi","Sahiba (From ""Phillauri"")",2017-02-24,49,329375,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1We89SAonMk70QBbfXERxa,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4OcvkkpF3xmyCGGY5IBlgi,"Tera Ban Jaunga (From ""Kabir Singh"")","Akhil Sachdeva; Tulsi Kumar","hindi pop; bollywood; desi","Best Of Akhil Sachdeva",2019-09-03,64,236436,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6NlZ5XiTDSXrVaAEW1q4x9,"A Whole New World","Kurt Hugo Schneider; Shirley Setia","bollywood; hindi pop","A Whole New World",2018-07-15,8,159543,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0rk2X5TAhraBC5aCIXK2Rq,"Samjhawan","Jawad Ahmad; Shaarib Toshi; Arijit Singh; Shreya Ghoshal","bollywood; hindi pop; desi; bangla pop; kannada pop; marathi pop","Samjhawan",2014-06-19,72,269184,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7Hm5FQw1NQtfnTI7JUExaP,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3HYJsH8OUNvk2DrxPv4s5u,"Raabta (Kehte Hain Khuda Ne) [From ""Agent Vinod""]","Pritam; Shreya Ghoshal; Arijit Singh","bollywood; hindi pop; desi; kannada pop; marathi pop; bangla pop","Best Of Shreya Ghoshal",2018-03-09,42,289196,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5b7u3idwfY2LyqMQlCwscm,"Kaun Tujhe (From ""M.S.Dhoni - The Untold Story"")","Palak Muchhal","bollywood; hindi pop; gujarati garba","2016 Shining Star - Palak Muchhal",2016-12-30,54,241448,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0EVbZWxLOZT1siPMzEGNwc,"Never Been Better","Steve Void","slap house; deep house","Never Been Better",2017-02-08,29,175500,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7p0nLpkKaAeebJ1SIP46HM,"Hollow (feat. Sabelle)","My Buddy Mike; Sabelle","tropical house; new jack swing","Hollow (feat. Sabelle)",2018-03-09,37,232936,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4JwoqSLwiHh2jgW7YWPA1O,"Forget About Me","ALIUS","","Forget About Me",2017-10-20,0,191653,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2UkpNDpEEiKskG9LfifInn,"Getaway","Syn Cole","tropical house; edm","Getaway",2018-11-02,0,194181,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2qfEcCkEo5NscA9GL7ER72,"Nobody","Martin Jensen; James Arthur","soft pop","Nobody",2019-03-01,52,211040,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6UiDiFJUGEDzkGpZBL8IYq,"I Feel The Love","Tritonal; Ross Lynch; R5","edm; progressive house; progressive trance","Painting With Dreams",2016-09-09,44,213120,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3gicyfiEVMGONgzygpWjNT,"Grip","Seeb; Bastille","","Grip",2018-12-06,45,198074,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2iJHpuk7zAoQJjtwEdtlSk,"Last Time Love","Fancy Cars; Myah Marie","","Last Time Love",2017-11-10,25,198520,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7dltSWFFyZGXUk9CFr03m2,"Rise & Fall","Mike Perry; Cathrine Lassen","tropical house","Rise & Fall",2018-10-12,0,158302,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",41x3JChyPH1boVKT2iFyCW,"Nobody","Hot Shade; Mika Zibanejad","tropical house","Nobody",2018-07-06,0,182334,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",45dfQtYHMebtLqLdlOXTuM,"Nobody Can Hear You","ALIUS; Ariela Jacobs","","Nobody Can Hear You",2017-05-19,0,190198,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2i5hQ1RoA0KCzVRXjktJoo,"Start It Over (feat. CVBZ & Shy Martin)","NOTD; Sean Jacobs; shy martin","","Start It Over (feat. CVBZ & Shy Martin)",2018-12-14,42,167679,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3T0oPETOdddxJ2xTt2qJe4,"Aaya Na Tu","Arjun Kanungo; Momina Mustehsan; Kunaal Vermaa","hindi pop; sufi; desi; qawwali; bollywood; desi pop","Aaya Na Tu",2018-06-20,59,210000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1pQS8KQd8fj2KRjnYBk0RD,"Fursat","Arjun Kanungo; Mayur Puri","hindi pop; bollywood; desi","Fursat",2016-03-11,44,276746,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3FwuS1ECUtyNGaJK4NA3fa,"Blue in My Eyes","NLSN; Lisa Rowe","tropical house","Blue in My Eyes",2018-02-23,0,198865,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6ATgDc6e4sPn84hvJsAmPt,"hate u love u","Olivia O'Brien","","hate u love u",2016-12-09,64,175466,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5Uw7Dut2lZfexn3Y09swpf,"Find U Again (feat. Camila Cabello)","Mark Ronson; Camila Cabello","","Late Night Feelings",2019-06-21,47,176416,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",15xWRPHQMeqgdkGzInx3PY,"Falling Like The Stars","James Arthur","soft pop","Falling Like The Stars",2019-05-10,60,212720,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4cZ3UsiKd1kUQIaq4BFIj2,"No One Compares To You","Jack & Jack","","A Good Friend Is Nice",2019-01-25,55,182920,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0LcNMuOiULmxJK3bdHTfDF,"Missing You","The Vamps","","Missing You - EP",2019-04-19,44,214986,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7sTtHHrD0zDpmzQzH3zegz,"Consequences","Camila Cabello","","Camila",2018-01-12,57,178466,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7LzouaWGFCy4tkXDOOnEyM,"Liar","Camila Cabello","","Liar",2019-09-04,56,207038,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4AYtqFyFbX0Xkc2wtcygTr,"Soon You’ll Get Better (feat. The Chicks)","Taylor Swift; The Chicks","country","Lover",2019-08-23,64,201586,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0BB47XqC0BbozOvDoPBraU,"Only Want You","Rita Ora","","Phoenix (Deluxe)",2018-11-23,38,180760,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1XycRdRtPyNKHyuXq0J3om,"timekeeper","Greyson Chance","","portraits",2019-03-15,21,237373,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0m0hFyrAqGKaVJ7D24Jozg,"Been There Done That (feat. Tove Styrke)","NOTD; Tove Styrke","swedish pop","Been There Done That (feat. Tove Styrke)",2018-08-24,47,197112,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6THwtgImf1ZAR2w3iknjeS,"We Don't Care","Sigala; The Vamps","","Brighter Days",2018-09-28,45,207666,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4ZQaXsqI1GCAHSjw28v1iE,"Speechless","Glades","","This Is What It's Like",2016-10-21,0,189130,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",78zc6DT7A2ccehmIqef9mT,"Friday Night‬‬‬","Vigiland","melbourne bounce","Friday Night",2017-04-28,57,173871,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1oew3nFNY3vMacJAsvry0S,"Me And My Broken Heart","Rixton","","Let The Road",2014-01-01,75,193733,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6CagMrZXJUdGGIw6Eaepos,"Exhale","Sabrina Carpenter","pop","Singular Act II",2019-07-19,59,164708,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2QRIcuedP1GlMiCgqToDgF,"She's Not Me, Pt. 1 & 2","Zara Larsson","","Uncover",2012,43,332382,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6Sf2YqGzNmVfSNpLFWuYbz,"Rave in the Grave","AronChupa; Little Sis Nora","electro swing; melbourne bounce","Rave in the Grave",2018-05-04,56,162732,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1u8c2t2Cy7UBoG4ArRcF5g,"Blank Space","Taylor Swift","","1989 (Deluxe)",2014-01-01,83,231826,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3u3CzBYyOGIr7AqbB8Fh9n,"As Long As I'm With You","OMI; CMC$","","As Long As I'm With You",2018-12-07,34,188148,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5ihELin235AcfzK9vnU7zg,"Weapons (Stripped) [Lost Recording #3]","Mark Diamond","","War (The Lost Recordings)",2016-11-11,21,263801,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7fCNUWi6uflDTQ08srxMZk,"No Excuses","Meghan Trainor","","No Excuses",2018-03-01,53,152862,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2G8XR0sPEMD62TxeOpGDdX,"Standing On All Threes","OMI","","Me 4 U",2015-10-16,28,197009,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6GzApXoBQiiAjak3tOQfV3,"Lie To Me (feat. Julia Michaels)","5 Seconds of Summer; Julia Michaels","","Lie To Me (feat. Julia Michaels)",2018-12-21,56,149877,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6oynBOei3VDaRYmBghTCOO,"Wild Enough","Elina","","Wild Enough",2018,41,186658,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2UnBbINT5x5YuE5kSw1Df3,"Real","Tritonal; Evalyn","edm; progressive house; progressive trance","U & Me",2019-06-14,0,202909,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1fzAuUVbzlhZ1lJAx9PtY6,"Daylight","Taylor Swift","","Lover",2019-08-23,80,293453,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2Rk4JlNc2TPmZe2af99d45,"ME! (feat. Brendon Urie of Panic! At The Disco)","Taylor Swift; Brendon Urie; Panic! At The Disco","emo","Lover",2019-08-23,72,193000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1LLXZFeAHK9R4xUramtUKw,"London Boy","Taylor Swift","","Lover",2019-08-23,71,190240,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2dgFqt3w9xIQRjhPtwNk3D,"Death By A Thousand Cuts","Taylor Swift","","Lover",2019-08-23,71,198533,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",12M5uqx0ZuwkpLp5rJim1a,"Cornelia Street","Taylor Swift","","Lover",2019-08-23,72,287266,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4y5bvROuBDPr5fuwXbIBZR,"Paper Rings","Taylor Swift","","Lover",2019-08-23,76,222400,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",214nt20w5wOxJnY462klLw,"Miss Americana & The Heartbreak Prince","Taylor Swift","","Lover",2019-08-23,78,234146,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2YWtcWi3a83pdEg3Gif4Pd,"I Think He Knows","Taylor Swift","","Lover",2019-08-23,68,173386,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3pHkh7d0lzM2AldUtz2x37,"The Archer","Taylor Swift","","Lover",2019-08-23,74,211240,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3RauEVgRgj1IuWdJ9fDs70,"The Man","Taylor Swift","","Lover",2019-08-23,76,190360,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1BxfuPKGuaTgP7aM0Bbdwr,"Cruel Summer","Taylor Swift","","Lover",2019-08-23,87,178426,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",43rA71bccXFGD4C8GOpIlN,"I Forgot That You Existed","Taylor Swift","","Lover",2019-08-23,72,170640,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",70E8xgEavw6UrRHj7BNp0H,"Hypnotized","Tory Lanez","","MEMORIES DON'T DIE",2018-03-02,40,191640,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1SNiXDwSilLujcYdvfqVpT,"Call You Mine","The Chainsmokers; Bebe Rexha","","World War Joy...Takeaway",2019-07-24,0,217653,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",66U0ASk1VHZsqIkpMjKX3B,"Little Swing","AronChupa; Little Sis Nora","electro swing; melbourne bounce","Little Swing",2016-02-26,57,163809,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1Q7HJEtZ1Hj6Q3eQgQepMB,"Colder","Nina Nesbitt","","The Sun Will Come Up, The Seasons Will Change",2019-02-01,21,188493,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1pvGWSvIXr8PTk8nC4SnXK,"Helplessly","Tatiana Manaois","","Helplessly",2014-03-23,54,185480,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6cQCJ8M3HS144mnlpW2SZW,"Captains Of The Sky","Sky Sailing","","An Airplane Carried Me To Bed",2010-01-01,38,164026,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0GxQ1A5L9xnMOytbP6eKBG,"What Lovers Do (feat. SZA)","Maroon 5; SZA","pop; r&b","Red Pill Blues (Deluxe)",2018-06-15,72,199849,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7MD9ChF2vJdolJOG0LqIYc,"Say You Won't Let Go","Sebastian Dahlström","","Say You Won't Let Go",2017-11-03,16,174000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7m97u5zpSWqkDjN4uwY2LP,"shut up","Greyson Chance","","portraits",2019-03-15,50,170363,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5WtfUKzXircvW8l5aaVZWT,"What A Time (feat. Niall Horan)","Julia Michaels; Niall Horan","","Inner Monologue Part 1",2019-01-24,73,173306,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3GPD0sa8NqrEmlGzkhKrAN,"Lying To Myself","Hearts & Colors","","Lying To Myself",2018-06-01,23,210473,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1Cxlad9pX88iFic9SjlqBt,"Take Your Love","Olly Murs","","Take Your Love",2018-10-26,0,213480,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",33CeXYP0EtZTujI3IuNqBS,"Mera Mann-Yahin Hoon Main","Ayushmann Khurrana","bollywood; hindi pop","T-Series Mixtape",2017-08-11,29,242971,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5JIARsmwRLxoCkSgliokZE,"Kaise Mujhe-Tum Ho","Palak Muchhal; Aditya Narayan","bollywood; hindi pop; gujarati garba","T-Series Mixtape",2017-08-11,26,399813,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4xRi0W9pSieTAZ72xdSVQh,"Roke Na Ruke-Mast Magan","Tulsi Kumar; Dev Negi","bollywood; hindi pop; desi; gujarati garba","T-Series Mixtape",2017-08-11,27,275098,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2N1o6XK0gcxG2i1chIkfQB,"Pee Loon-Ishq Sufiyana","Neha Kakkar; Sreerama Chandra","bollywood; hindi pop; desi; desi pop; gujarati garba; tollywood; telugu pop","T-Series Mixtape",2017-08-11,30,227932,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6RRyg41cwpbE52nA4PqxFI,"Soch Na Sake-Sab Tera","Neeti Mohan; Harrdy Sandhu","bollywood; hindi pop; desi; punjabi pop; bhangra; desi pop","T-Series Mixtape",2017-08-11,33,283110,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7E8emnJJGI1JLN7ClE5nmC,"Agar Tum Saath Ho-Maahi Ve","Jubin Nautiyal; Prakriti Kakar","bhajan; hindi pop; bollywood; devotional","T-Series Mixtape",2017-08-11,45,272868,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3Sl6FS5Bv1HAHQblzYThIG,"Main Agar Kahoon-Bol Do Na Zara","Armaan Malik; Jonita Gandhi; Rashmi Virag","bollywood; hindi pop; kannada pop; tollywood; telugu pop; tamil pop; kollywood; desi; tamil dance","T-Series Mixtape",2017-08-11,28,294754,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7f8gGz3VG9SGJxI2HoxhTp,"Gazab Ka Hai Din-Bawara Mann","Shaan; Sukriti Kakar","bollywood; hindi pop; desi; desi pop; bangla pop","T-Series Mixtape",2017-08-11,27,270590,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1ih6Z3cPXUe7Q9LyuVGVev,"Sunn Raha Hai-Rozana","Shreya Ghoshal","bollywood; hindi pop; desi; kannada pop; marathi pop","T-Series Mixtape",2017-08-11,28,291070,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4q5AnGTxHSkz92iGVR7wev,"Tu Jo Mila-Raabta","Shirley Setia; Jubin Nautiyal","bollywood; hindi pop; bhajan; devotional","T-Series Mixtape",2017-08-11,31,284145,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",66ieknOlStwBOyTvOqwjqW,"Tose Naina-Tum Jo Aaye","Armaan Malik; Tulsi Kumar","bollywood; hindi pop; kannada pop; tollywood; telugu pop; desi","T-Series Mixtape",2017-08-11,33,264728,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4TLeqfakQT1ObdwMkuHEaF,"Dua-Saware","Salim Merchant; Neeti Mohan","bollywood; sufi; hindi pop; desi","T-Series Mixtape",2017-08-11,29,318634,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0TK2YIli7K1leLovkQiNik,"Señorita","Shawn Mendes; Camila Cabello","","Señorita",2019-06-21,79,190960,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2f2gz6LZSz67HWq84Hqn2j,"Polaroid - Acoustic","Jonas Blue; Liam Payne; Lennon Stella","tropical house","Polaroid (Acoustic)",2018-11-23,40,217586,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4J4zx8xGJpuGndrVc06KaT,"Diamond Heart","Alan Walker; Sophia Somajo","","Diamond Heart",2018-09-28,56,239834,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5MKP04nKJbVnlCITomKYET,"Tu Jaane Na (From ""Ajab Prem Ki Ghazab Kahani"")","Atif Aslam","bollywood; hindi pop; desi; sufi; qawwali","#NowPlaying: Atif Aslam Hits",2014-01-06,0,341933,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7pBcon5GqvUfn58HRfF8wv,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6tS3XVuOyu10897O3ae7bi,"California Gurls","Katy Perry; Snoop Dogg","pop; g-funk; west coast hip hop; gangster rap; hip hop; old school hip hop; rap","Teenage Dream: The Complete Confection",2012-03-12,74,234653,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5p7ujcrUXASCNwRaWNHR1C,"Without Me","Halsey","","Without Me",2018-10-04,6,201660,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5aTsxlQlq0vIedDWZoqMWN,"Lights - Single Version","Ellie Goulding","","Bright Lights (Lights Re-pack / Bonus Version)",2010-01-01,67,210853,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4XLu3tTSZiPFVC9mmuR6Zp,"All These Years","Camila Cabello","","Camila",2018-01-12,51,164373,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3dQ71J2HPHXpPqJ0tQdDHR,"Dollar Bill (feat. Kid Ink)","Phoebe Ryan; Kid Ink","","Dollar Bill (feat. Kid Ink)",2016-07-08,27,226973,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5EbX5xL3O2xT8FxCpYzgUO,"How Far I'll Go - From ""Moana""","Alessia Cara; Disney","","How Far I'll Go (From ""Moana"")",2016-10-28,59,175517,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3zHq9ouUJQFQRf3cm1rRLu,"Love Me Like You Do - From ""Fifty Shades Of Grey""","Ellie Goulding","","Delirium (Deluxe)",2015-11-06,77,252534,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5m2a8MuuMPfKKYeJnoHdvL,"All I Ever Need","Austin Mahone","","The Secret",2014-05-27,0,213746,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2P91MQbaiQOfbiz9VqhqKQ,"I Like Me Better","Lauv","","I met you when I was 18. (the playlist)",2018-05-31,3,197436,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",53CJANUxooaqGOtdsBTh7O,"Old Town Road","Lil Nas X","","Old Town Road",2019-03-14,20,113013,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2dpaYNEQHiRxtZbfNsse99,"Happier","Marshmello; Bastille","edm","Happier",2018-08-17,10,214289,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",11cDEev79fPKi6uJCjUhu8,"Who Do You Love","The Chainsmokers; 5 Seconds of Summer","","Who Do You Love",2019-02-07,0,226746,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5WHTFyqSii0lmT9R21abT8,"Don't Call Me Up","Mabel","","Ivy To Roses (Mixtape)",2019-01-18,71,178480,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1WSGTYKLEpKfNQYYW5Oymt,"I Can’t Get Enough (benny blanco, Selena Gomez, J Balvin, Tainy)","benny blanco; Selena Gomez; J Balvin; Tainy","reggaeton; latin","I Can’t Get Enough (benny blanco, Selena Gomez, J Balvin, Tainy)",2019-02-28,59,158027,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6MWtB6iiXyIwun0YzU6DFP,"Wow.","Post Malone","","Wow.",2018-12-24,3,149520,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2tjWCe2W7sgvS3C8NHcdtI,"Duniyaa (From ""Luka Chuppi"")","Akhil; Dhvani Bhanushali; Kunaal Vermaa; Abhijit Vaghani","punjabi pop; hindi pop; bollywood; desi pop; desi; sufi","Duniyaa (From ""Luka Chuppi"")",2019-02-22,69,222500,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4y3OI86AEP6PQoDE6olYhO,"Sucker","Jonas Brothers","","Sucker",2019-03-01,2,181040,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1dxbiVeiV7nQ2V9qXnhJiB,"Buddhu Sa Mann","Amaal Mallik; Armaan Malik; Abhiruchi Chand","bollywood; hindi pop; desi; kannada pop; tollywood; telugu pop","Kapoor & Sons (Since 1921) (Original Motion Picture Soundtrack)",2016-03-04,60,206858,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0zHZSO80CTxNtvtRhveHRJ,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3DbNXniRprbs23Vlmy4roM,"Halka Halka","Sunidhi Chauhan; Divya Kumar; Amit Trivedi","bollywood; desi; hindi pop; gujarati garba; gujarati pop","Fanney Khan",2018-07-19,59,247381,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3Y7a0typ6ik1KscmebXd6D,"No New Friends","Sia; Diplo; Labrinth; LSD","moombahton","No New Friends",2019-03-14,0,175823,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4n7jnSxVLd8QioibtTDBDq,"On My Way","Alan Walker; Sabrina Carpenter; Farruko","pop; reggaeton; trap latino","On My Way",2019-03-21,73,193797,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0slYDB04lcoiFFLTJ16OIo,"Not All Heroes Wear Capes","Owl City","","Cinematic",2018-06-01,0,226568,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3GrCQPpKqKzOcKfMAoqn82,"Bolna (From ""Kapoor & Sons (Since 1921)"")","Tanishk Bagchi; Arijit Singh; Asees Kaur","bollywood; hindi pop; desi; desi pop; gujarati garba; bangla pop","Bolna (From ""Kapoor & Sons (Since 1921)"")",2016-03-04,66,212832,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2kLFzLJgHtreNbNlbVzQy4,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5we8idYGViC40kjeHejRog,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1enJYkwGKshAe4TAGXYd1V,"","","","",0000,0,0,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1oR7VE2YJv3kT5XIa0MGMS,"Sing","Goose house","anime; j-pop","Goose house Phrase#01",2011-08-20,31,260441,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4WLVepwyIveYwv7uJROc5p,"Me, Myself & I - Marc Stout & Scott Svejda Remix","G-Eazy; Bebe Rexha; Marc Stout; Scott Svejda","","Me, Myself & I (Marc Stout & Scott Svejda Remix)",2016-03-18,40,275714,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7GGSM1EO7ldw9GNIxaMeLm,"Mad World (feat. Jake Reese) - Radio Edit","Hardwell; Jake Reese","big room; edm; progressive house; techno","Mad World (feat. Jake Reese)",2015-11-06,0,210703,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4JS7PwFSIt32LBRGl4nM0A,"PUSH BACK","Ne-Yo; Bebe Rexha; Stefflon Don","dancehall","GOOD MAN (Deluxe)",2018-06-08,54,221280,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5tAa8Uaqr4VvA3693mbIhU,"Ruin My Life","Zara Larsson","","Ruin My Life",2018-10-18,4,190931,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2jfo71bLqJLL1PRttzBg9N,"The Writer","Ellie Goulding","","Bright Lights (Lights Re-pack / Bonus Version)",2010-01-01,35,251280,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5ESl7nKS7eZDMkH4hfXY7r,"Preacher","OneRepublic","soft pop","Native",2013-01-01,40,248333,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5pD9x23lsoQr464mlmaKNJ,"Chained To The Rhythm","Katy Perry; Skip Marley","pop; reggae","Chained To The Rhythm",2017-02-10,1,237915,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5jrdCoLpJSvHHorevXBATy,"Dark Horse","Katy Perry; Juicy J","pop; crunk","PRISM (Deluxe)",2013-10-18,74,215672,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4lCv7b86sLynZbXhfScfm2,"Firework","Katy Perry","pop","Teenage Dream: The Complete Confection",2012-03-12,71,227880,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7COXchtUOMd6uIT6HvmRaI,"i'm so tired...","Lauv; Troye Sivan","","i'm so tired...",2019-01-24,1,162582,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0prNGof3XqfTvNDxHonvdK,"Scars To Your Beautiful","Alessia Cara","","Know-It-All (Deluxe)",2015-11-13,2,230226,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4mxWSdf71VFO52qFeY0fZt,"What Lovers Do (feat. SZA)","Maroon 5; SZA","pop; r&b","What Lovers Do (feat. SZA)",2017-08-30,0,199849,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2y5aJvzXhHPA94U5GFAcXe,"I Don’t Wanna Live Forever (Fifty Shades Darker)","ZAYN; Taylor Swift","","Fifty Shades Darker (Original Motion Picture Soundtrack)",2017-02-10,70,245653,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0ofbQMrRDsUaVKq2mGLEAb,"Havana (feat. Young Thug)","Camila Cabello; Young Thug","rap; melodic rap; trap","Havana (feat. Young Thug)",2017-08-03,3,216896,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0mel2N9Ws9r4yLQn5QE21Y,"Too Good At Goodbyes - Edit","Sam Smith","soft pop","Too Good At Goodbyes",2017-09-08,0,201000,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1p80LdxRV74UKvL8gnD7ky,"Blank Space","Taylor Swift","","1989",2014-10-27,74,231826,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0CZ8lquoTX2Dkg7Ak2inwA,"1950","King Princess","","1950",2018-02-23,64,225133,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1wjzFQodRWrPcQ0AnYnvQ9,"I Like Me Better","Lauv","","I Like Me Better",2017-05-19,2,197436,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7jWUcCeCFWCHlEqp6SduNl,"In The Middle","The Wanted","","Word Of Mouth (Deluxe)",2013-01-01,26,193817,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4hQ6UGyWQIGJmHSo0J88JW,"Back To You - From 13 Reasons Why – Season 2 Soundtrack","Selena Gomez","","Back To You (From 13 Reasons Why – Season 2 Soundtrack)",2018-05-10,70,207904,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4ToeppjiHi7kGMAVUvosv0,"Hell Nos And Headphones","Hailee Steinfeld","","HAIZ",2016-02-26,45,230933,true
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3fVnlF4pGqWI9flVENcT28,"Wildest Dreams","Taylor Swift","","1989",2014-01-01,74,220440,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7xoUc6faLbCqZO6fQEYprd,"One Last Time","Ariana Grande","pop","My Everything (Deluxe)",2014-08-22,85,197266,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4ofwffwvvnbSkrMSCKQDaC,"Shotgun","George Ezra","","Staying at Tamara's",2018-03-23,74,201287,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1PYsy4cGp3egbeaQDjIGIa,"Yottabyte","Martin Garrix","edm; progressive house; electronica","BYLAW EP",2018-10-19,38,210004,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3tka6vtNbu9C2xsbthEkNG,"Hold On & Believe (feat. The Federal Empire)","Martin Garrix; The Federal Empire","edm; progressive house; electronica","Seven",2016-10-28,37,234389,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",135TYaJ0WsivC2Zk7MEX4Y,"Project T - Martin Garrix Remix","Dimitri Vegas & Like Mike; Sander van Doorn; Martin Garrix","big room; electronica; edm; progressive house","Project T (Martin Garrix Remix)",2013-10-14,0,312197,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3m3OwRXheUtBRKmcVNUsFo,"Helicopter - Original Edit","Martin Garrix; Firebeatz","edm; progressive house; electronica; big room; electro house; future house","Helicopter",2014-03-17,0,202506,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5wsskBPgW3pw876uCa9JX4,"The Only Way Is Up","Martin Garrix; Tiësto","edm; progressive house; electronica; trance; big room","Club Life, Vol. 4 - New York City",2015-05-18,0,258440,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",65G7XDGcybJiGywSCXJiL5,"Animals - Radio Edit","Martin Garrix","edm; progressive house; electronica","Animals",2016-12-16,4,176120,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6jA8HL9i4QGzsj6fjoxp8Y,"There for You","Martin Garrix; Troye Sivan","edm; progressive house; electronica","There for You",2017-05-26,63,221904,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",23L5CiUhw2jV1OIMwthR3S,"In the Name of Love","Martin Garrix; Bebe Rexha","edm; progressive house; electronica","In the Name of Love",2016-07-29,78,195706,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3ebXMykcMXOcLeJ9xZ17XH,"Scared to Be Lonely","Martin Garrix; Dua Lipa","edm; progressive house; electronica; pop","Scared to Be Lonely",2017-01-27,75,220883,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6x7r0lpyqxBKGq8J7LFMeu,"Sun Is Never Going Down (feat. Dawn Golden)","Martin Garrix; Dawn Golden","edm; progressive house; electronica","Seven",2016-10-28,37,204418,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5Zpe48RJ5Vs1YuFRodYdeS,"Game Over","Martin Garrix; LOOPERS","edm; progressive house; electronica; bass house; future house; big room","Game Over",2018-04-20,43,155644,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0OlnLZY4cmQzT6ZGttvWBM,"So Far Away (feat. Jamie Scott & Romy Dya)","Martin Garrix; David Guetta; Jamie Scott; Romy Dya","edm; progressive house; electronica","So Far Away (feat. Jamie Scott & Romy Dya)",2017-12-01,62,183636,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",38nKfxyRrjYfx0ODX1W5yB,"I Don't Want You Back","AJ Mitchell","","Hopeful",2018-07-20,50,224144,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5EcpuCZ75oXmU5j0Hqoyys,"Just The Way You Are","Bruno Mars","","Red Hot R & B",2011-01-01,22,220293,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",0lks2Kt9veMOFEAPN0fsqN,"Lily","Alan Walker; K-391; Emelie Hollow","norwegian pop","Different World",2018-12-14,72,195840,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3NgCzSW98SsqBdpYcnm4kv,"I Have Questions","Camila Cabello","","I Have Questions",2017-05-21,53,221881,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1Pw5C4N6Fn5E4mGCxmbbVa,"Say You Won't Let Go","James Arthur","soft pop","Say You Won't Let Go",2016-09-09,64,211240,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7C7yqFTM0ncyJ04GIKrxdV,"Anything Could Happen","Ellie Goulding","","Halcyon",2012-01-01,61,286322,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2Gl0FzuLxflY6nPifJp5Dr,"First Time","Kygo; Ellie Goulding","tropical house","First Time",2017-04-28,60,193511,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",3odrUVQ9tvRpkC9II2oWzx,"Still Falling For You - From ""Bridget Jones's Baby""","Ellie Goulding","","Still Falling For You (From ""Bridget Jones's Baby"" Original Motion Picture Soundtrack)",2016-08-19,70,240867,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2GgxS8bUT5G25QJTsfSv0R,"Burn","Ellie Goulding","","Halcyon Days",2014-01-01,64,231211,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",5a7NdkF09AfD0H607eiOkX,"On My Mind","Ellie Goulding","","Delirium (Deluxe)",2015-11-06,66,213445,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7k5EcszNwUturoU20TTy1G,"Shooting Star","Owl City","","The Midsummer Station",2012-08-17,53,247346,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4govmU9nWC17G8WRIkhEFh,"Show You Love","Kato; Sigala; Hailee Steinfeld","dansk pop; dansk rap","Show You Love",2017-02-24,40,182720,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7haQE5nOcxwk0HXahP0aV3,"Colour","MNEK; Hailee Steinfeld","","Colour",2018-06-01,49,201420,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",2qxaR31Te4xDR2yO6LqM8z,"Rock Bottom","Hailee Steinfeld; DNCE","","HAIZ",2016-02-26,63,198240,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6W5RmgWh46p9RQ4LDezHKE,"Flashlight (Sweet Life Mix) - From ""Pitch Perfect 2"" Soundtrack","Hailee Steinfeld","","Pitch Perfect 2 - Special Edition (Original Motion Picture Soundtrack)",2015-05-12,55,178320,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",36phXHOKx8rO7CMp2vNX4x,"Love Myself","Hailee Steinfeld","","HAIZ",2016-02-26,68,218773,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4Ce37cRWvM1vIGGynKcs22,"Starving","Hailee Steinfeld; Grey; Zedd","edm","Starving",2016-07-22,71,181880,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6VrLYoQKdhu1Jruei06t65,"Somebody To You","The Vamps","","Meet The Vamps",2014-01-01,70,185097,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",7JJmb5XwzOO8jgpou264Ml,"There's Nothing Holdin' Me Back","Shawn Mendes","","Illuminate (Deluxe)",2017-04-20,86,199440,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",1SJtlNRJDeYHioymcvsqev,"Crying in the Club","Camila Cabello","","Crying in the Club",2017-05-18,67,216391,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6l0Ky2PycJV1Bz88kFeVGL,"Capital Letters","Hailee Steinfeld; BloodPop®","","Fifty Shades Freed (Original Motion Picture Soundtrack)",2018-02-09,70,219373,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",6yIdwnpDHufLWgQcveTPMk,"I Don’t Wanna Live Forever (Fifty Shades Darker)","ZAYN; Taylor Swift","","I Don’t Wanna Live Forever (Fifty Shades Darker)",2016-12-09,0,245200,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",4eWQlBRaTjPPUlzacqEeoQ,"Never Be the Same","Camila Cabello","","Camila",2018-01-12,78,226973,false
+31w4eh5qiqz42qvs7acudxpc2koi,"Atharva Prabhu",40YcuQysJ0KlGQTeGUosTC,"Me, Myself & I","G-Eazy; Bebe Rexha","","When It's Dark Out",2015-12-04,79,251466,true

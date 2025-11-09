@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Queue Update Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #fff; }
+        .log { background: #2a2a2a; padding: 10px; margin: 10px 0; border-left: 3px solid #4CAF50; }
+        .error { border-left-color: #f44336; }
+        button { padding: 10px 20px; margin: 5px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background: #45a049; }
+        #status { margin: 20px 0; padding: 15px; background: #2a2a2a; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Queue Update Test</h1>
+    <p>Testing if the queue updates on subsequent vibe checks</p>
+    
+    <div id="status">
+        <strong>Status:</strong> <span id="statusText">Ready</span><br>
+        <strong>Queue Size:</strong> <span id="queueSize">0</span><br>
+        <strong>Last Update:</strong> <span id="lastUpdate">Never</span>
+    </div>
+    
+    <button onclick="testPartyState()">1. Test /party-state</button>
+    <button onclick="testGemini()">2. Test /gemini-recommend</button>
+    <button onclick="testFullFlow()">3. Test Full Flow (add seed + check updates)</button>
+    <button onclick="clearLogs()">Clear Logs</button>
+    
+    <div id="logs"></div>
+    
+    <script>
+        function log(message, isError = false) {
+            const logs = document.getElementById('logs');
+            const div = document.createElement('div');
+            div.className = 'log' + (isError ? ' error' : '');
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logs.insertBefore(div, logs.firstChild);
+        }
+        
+        function updateStatus(text, queueSize) {
+            document.getElementById('statusText').textContent = text;
+            document.getElementById('queueSize').textContent = queueSize || '0';
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+        }
+        
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+        }
+        
+        async function testPartyState() {
+            log('Testing /party-state endpoint...');
+            try {
+                const response = await fetch('http://127.0.0.1:5000/party-state');
+                const data = await response.json();
+                log(`✅ Party state received: ${data.playlist_size} songs in playlist`);
+                log(`   Current score: ${data.current_score}`);
+                log(`   Trend: ${data.current_trend}`);
+                log(`   Gemini calls: ${data.gemini_call_count}`);
+                updateStatus('Party state OK', data.playlist_size);
+                
+                if (data.playlist && data.playlist.length > 0) {
+                    log(`   Songs: ${data.playlist.map(s => s.title).join(', ')}`);
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, true);
+                updateStatus('Error', 0);
+            }
+        }
+        
+        async function testGemini() {
+            log('Testing /gemini-recommend endpoint...');
+            try {
+                const response = await fetch('http://127.0.0.1:5000/gemini-recommend', {
+                    method: 'POST'
+                });
+                
+                if (response.status === 429) {
+                    const data = await response.json();
+                    log(`⏰ Gemini cooldown: ${data.message}`);
+                    updateStatus('Gemini cooldown', '-');
+                } else if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ Gemini called successfully!`);
+                    log(`   Songs added: ${data.songs_added}`);
+                    log(`   Playlist size: ${data.playlist_size}`);
+                    log(`   Gemini call #${data.gemini_call_count}`);
+                    updateStatus('Gemini OK', data.playlist_size);
+                } else {
+                    log(`❌ Gemini error: ${response.status}`, true);
+                    updateStatus('Gemini error', '-');
+                }
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, true);
+                updateStatus('Error', 0);
+            }
+        }
+        
+        async function testFullFlow() {
+            log('=== Starting Full Flow Test ===');
+            
+            // 1. Reset party
+            log('1. Resetting party...');
+            await fetch('http://127.0.0.1:5000/reset-party', { method: 'POST' });
+            log('   ✅ Party reset');
+            
+            // 2. Add seed songs
+            log('2. Adding seed songs...');
+            const seedSongs = [
+                { title: "O Saathi", artist: "Atif Aslam", genre: "bollywood", source: "seed" },
+                { title: "Samjhawan", artist: "Jawad Ahmad", genre: "bollywood", source: "seed" },
+                { title: "Duniyaa", artist: "Akhil", genre: "punjabi pop", source: "seed" }
+            ];
+            
+            await fetch('http://127.0.0.1:5000/add-to-playlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ songs: seedSongs })
+            });
+            log(`   ✅ Added ${seedSongs.length} seed songs`);
+            
+            // 3. Check party state
+            log('3. Checking party state...');
+            const state1 = await fetch('http://127.0.0.1:5000/party-state');
+            const stateData1 = await state1.json();
+            log(`   📝 Playlist size: ${stateData1.playlist_size} songs`);
+            updateStatus('Initial state', stateData1.playlist_size);
+            
+            // 4. Simulate audio classification (to build up score history)
+            log('4. Simulating audio classification...');
+            const audioFile = await fetch('crowd-cheer-and-applause-406644.mp3');
+            const audioBlob = await audioFile.blob();
+            
+            const formData = new FormData();
+            formData.append('audio', audioBlob, 'test.mp3');
+            
+            await fetch('http://127.0.0.1:5000/classify-audio', {
+                method: 'POST',
+                body: formData
+            });
+            log('   ✅ Audio classified');
+            
+            // 5. Wait a bit and try Gemini
+            log('5. Waiting 2 seconds...');
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            log('6. Calling Gemini...');
+            const geminiResp = await fetch('http://127.0.0.1:5000/gemini-recommend', {
+                method: 'POST'
+            });
+            
+            if (geminiResp.ok) {
+                const geminiData = await geminiResp.json();
+                log(`   ✅ Gemini added ${geminiData.songs_added} songs`);
+                
+                // 7. Check party state again
+                log('7. Checking updated party state...');
+                const state2 = await fetch('http://127.0.0.1:5000/party-state');
+                const stateData2 = await state2.json();
+                log(`   📝 NEW Playlist size: ${stateData2.playlist_size} songs`);
+                updateStatus('After Gemini', stateData2.playlist_size);
+                
+                if (stateData2.playlist_size > stateData1.playlist_size) {
+                    log('✅✅✅ SUCCESS! Queue was updated!', false);
+                } else {
+                    log('❌ FAIL: Queue size did not increase', true);
+                }
+            } else {
+                log(`   ⏰ Gemini cooldown (status ${geminiResp.status})`);
+            }
+            
+            log('=== Test Complete ===');
+        }
+    </script>
+</body>
+</html>
