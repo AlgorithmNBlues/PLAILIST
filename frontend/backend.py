@@ -2,48 +2,7 @@ from flask import Flask, request, jsonify, render_template_string
 
 app = Flask(__name__)
 
-
 @app.route('/')
-@app.route('/login')
-def hello_world():
-        """Return a simple HTML login screen."""
-        login_html = '''
-        <!doctype html>
-        <html lang="en">
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Login</title>
-            <style>
-                body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:#f5f7fb; }
-                .container { max-width:400px; margin:80px auto; background:white; padding:24px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
-                label { display:block; margin-bottom:6px; font-weight:600 }
-                input[type="email"], input[type="password"] { width:100%; padding:8px 10px; margin-bottom:12px; border:1px solid #dfe6ef; border-radius:4px }
-                button { width:100%; padding:10px; background:#2563eb; color:white; border:none; border-radius:4px; font-weight:600 }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h2>Sign in</h2>
-                <form method="POST" action="/login">
-                    <div>
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email" required />
-                    </div>
-                    <div>
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="password" required />
-                    </div>
-                    <button type="submit">Sign in</button>
-                </form>
-            </div>
-        </body>
-        </html>
-        '''
-
-        return render_template_string(login_html)
-
-@app.route('/session')
 def session_home():
     """
     Serve the home.html file with dynamic vibe support.
