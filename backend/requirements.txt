@@ -9,3 +9,7 @@ pydub
 google-generativeai
 python-dotenv
 numpy
+pyaudio
+keyboard
+wave
+

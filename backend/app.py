@@ -1,5 +1,6 @@
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask_cors import CORS
 import os
 import torch
 from transformers import pipeline
@@ -18,7 +19,12 @@ load_dotenv()
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='../frontend',
+            static_folder='../frontend/static')
+
+# Enable CORS for frontend communication
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Set offline mode BEFORE any imports that might use HuggingFace
 os.environ["HF_HUB_OFFLINE"] = "1"
@@ -160,13 +166,12 @@ def detect_trend():
 
 # ---------- Party State & Gemini Integration ----------
 
-# Party session tracking
+# Simplified party session tracking
 PARTY_STATE = {
     "start_time": None,
-    "current_song": None,
-    "song_history": [],
-    "prediction_tracker": [],
-    "last_gemini_call": None
+    "playlist": [],  # Queue of songs to play
+    "last_gemini_call": None,
+    "gemini_call_count": 0
 }
 
 def calculate_party_stage(elapsed_minutes, avg_enthusiasm_5min, current_trend):
@@ -196,7 +201,7 @@ def interpret_enthusiasm_score(score):
         return "Negative reaction - crowd disappointed/unhappy"
 
 def build_gemini_context():
-    """Construct rich context for Gemini API"""
+    """Construct rich context for Gemini API - focused on continuous vibe monitoring"""
     if not SCORE_HISTORY:
         return None
     
@@ -208,11 +213,11 @@ def build_gemini_context():
     current_score = SCORE_HISTORY[-1] if SCORE_HISTORY else 0.0
     current_trend = detect_trend()
     
-    # Calculate historical averages
-    avg_30s = np.mean(SCORE_HISTORY[-6:]) if len(SCORE_HISTORY) >= 6 else current_score
-    avg_1min = np.mean(SCORE_HISTORY[-12:]) if len(SCORE_HISTORY) >= 12 else current_score
-    avg_5min = np.mean(SCORE_HISTORY[-60:]) if len(SCORE_HISTORY) >= 60 else current_score
-    score_variance = np.var(SCORE_HISTORY[-12:]) if len(SCORE_HISTORY) >= 12 else 0.0
+    # Calculate historical averages - focus on last 90 seconds (6 samples)
+    avg_90s = np.mean(SCORE_HISTORY[-6:]) if len(SCORE_HISTORY) >= 6 else current_score
+    avg_3min = np.mean(SCORE_HISTORY[-12:]) if len(SCORE_HISTORY) >= 12 else current_score
+    avg_5min = np.mean(SCORE_HISTORY[-20:]) if len(SCORE_HISTORY) >= 20 else current_score
+    score_variance = np.var(SCORE_HISTORY[-6:]) if len(SCORE_HISTORY) >= 6 else 0.0
     
     party_stage = calculate_party_stage(elapsed_minutes, avg_5min, current_trend)
     
@@ -221,12 +226,12 @@ def build_gemini_context():
             "enthusiasm_score": round(float(current_score), 2),
             "trend": current_trend,
             "interpretation": interpret_enthusiasm_score(current_score),
-            "confidence": "high" if len(SCORE_HISTORY) >= 10 else "low"
+            "confidence": "high" if len(SCORE_HISTORY) >= 6 else "low"
         },
         "temporal_context": {
-            "score_history_30s": [round(float(s), 2) for s in SCORE_HISTORY[-6:]],
-            "avg_score_30s": round(float(avg_30s), 2),
-            "avg_score_1min": round(float(avg_1min), 2),
+            "score_history_90s": [round(float(s), 2) for s in SCORE_HISTORY[-6:]],
+            "avg_score_90s": round(float(avg_90s), 2),
+            "avg_score_3min": round(float(avg_3min), 2),
             "avg_score_5min": round(float(avg_5min), 2),
             "score_variance": round(float(score_variance), 3),
             "samples_collected": len(SCORE_HISTORY)
@@ -235,10 +240,9 @@ def build_gemini_context():
             "stage": party_stage,
             "elapsed_minutes": elapsed_minutes,
             "start_time": PARTY_STATE["start_time"].isoformat(),
-            "total_songs_played": len(PARTY_STATE["song_history"]),
-            "current_song": PARTY_STATE["current_song"]
-        },
-        "song_history": PARTY_STATE["song_history"][-5:] if PARTY_STATE["song_history"] else []
+            "playlist_size": len(PARTY_STATE["playlist"]),
+            "current_playlist": PARTY_STATE["playlist"][-5:] if PARTY_STATE["playlist"] else []
+        }
     }
     
     return context
@@ -249,7 +253,7 @@ def call_gemini_api(context):
         return {"error": "Gemini API not configured"}
     
     try:
-        prompt = f"""You are an expert AI DJ assistant analyzing a live party. Based on the crowd analysis below, recommend the next 3 songs to play and provide strategic advice.
+        prompt = f"""You are an expert AI DJ assistant analyzing a live party in real-time. The DJ is playing music continuously while analyzing crowd reactions every 30 seconds. You are called every 90 seconds to recommend 2-3 songs to ADD to the playlist queue.
 
 CROWD STATE:
 - Current enthusiasm: {context['crowd_state']['enthusiasm_score']:.2f} (scale: -1.5 to +1.0)
@@ -257,39 +261,40 @@ CROWD STATE:
 - Interpretation: {context['crowd_state']['interpretation']}
 - Data confidence: {context['crowd_state']['confidence']}
 
-TEMPORAL CONTEXT:
-- Last 30 seconds scores: {context['temporal_context']['score_history_30s']}
-- Average (30s): {context['temporal_context']['avg_score_30s']:.2f}
-- Average (1min): {context['temporal_context']['avg_score_1min']:.2f}
+TEMPORAL CONTEXT (Last 90 seconds):
+- Score history: {context['temporal_context']['score_history_90s']}
+- Average (90s): {context['temporal_context']['avg_score_90s']:.2f}
+- Average (3min): {context['temporal_context']['avg_score_3min']:.2f}
 - Average (5min): {context['temporal_context']['avg_score_5min']:.2f}
 - Score stability (variance): {context['temporal_context']['score_variance']:.3f}
 
 PARTY CONTEXT:
 - Stage: {context['party_context']['stage']}
 - Time elapsed: {context['party_context']['elapsed_minutes']} minutes
-- Songs played: {context['party_context']['total_songs_played']}
+- Playlist queue size: {context['party_context']['playlist_size']}
+- Current playlist (last 5 songs): {json.dumps(context['party_context']['current_playlist'], indent=2) if context['party_context']['current_playlist'] else "Empty"}
 
-SONG HISTORY:
-{json.dumps(context['song_history'], indent=2) if context['song_history'] else "No songs played yet"}
+TASK: Based on the crowd vibe over the last 90 seconds, recommend 2-3 songs to APPEND to the playlist queue. These songs should maintain or improve the party energy flow without disrupting the current momentum.
 
-Based on this analysis, provide your response in the following JSON format:
+Provide your response in the following JSON format:
 {{
   "analysis": {{
-    "crowd_mood": "Brief assessment of crowd mood and energy",
-    "energy_trajectory": "Description of energy trend",
-    "recommendations_reasoning": "Why these recommendations make sense"
+    "crowd_mood": "Brief assessment of current crowd mood and energy",
+    "energy_trajectory": "Description of energy trend over last 90 seconds",
+    "recommendations_reasoning": "Why these specific songs will work right now"
   }},
   "action": {{
     "recommendation": "maintain_energy | increase_energy | wind_down | change_genre",
     "urgency": "low | normal | high",
-    "confidence": 0.0-1.0
+    "confidence": 0.0-1.0,
+    "songs_to_add": 2 or 3
   }},
   "next_songs": [
     {{
       "title": "Song Name",
       "artist": "Artist Name",
       "genre": "Genre",
-      "reasoning": "Why this song",
+      "reasoning": "Why this song fits the current vibe",
       "predicted_impact": {{
         "enthusiasm_delta": "+0.10 to +0.15",
         "expected_score": 0.75
@@ -297,11 +302,14 @@ Based on this analysis, provide your response in the following JSON format:
       "priority": 1
     }}
   ],
-  "warnings": ["warning1", "warning2"],
-  "tips": ["tip1", "tip2"]
+  "warnings": ["warning1", "warning2"] (if any concerns about crowd energy),
+  "tips": ["tip1", "tip2"] (general DJ advice)
 }}
 
-IMPORTANT: Return ONLY valid JSON, no markdown formatting or extra text."""
+IMPORTANT: 
+- Return ONLY valid JSON, no markdown formatting or extra text.
+- Recommend 2 songs for normal situations, 3 songs if urgency is high or energy needs boosting.
+- Consider the last 5 songs in the playlist to avoid repetition and maintain variety."""
 
         response = gemini_model.generate_content(
             prompt,
@@ -648,9 +656,9 @@ def classify_audio():
             SCORE_HISTORY.pop(0)
         trend = detect_trend()
         
-        # Track reaction for current song
-        if PARTY_STATE["current_song"] is not None:
-            PARTY_STATE["current_song"]["reactions"].append(enthusiasm_score)
+        # Initialize party start time if not set
+        if PARTY_STATE["start_time"] is None:
+            PARTY_STATE["start_time"] = datetime.now()
         
         result = {
             'probs': probs,
@@ -679,7 +687,7 @@ def classify_audio():
 
 @app.route('/gemini-recommend', methods=['POST'])
 def gemini_recommend():
-    """Get song recommendations from Gemini based on crowd analysis"""
+    """Get song recommendations from Gemini based on crowd analysis (called every 90+ seconds)"""
     try:
         if not gemini_model:
             return jsonify({
@@ -693,26 +701,55 @@ def gemini_recommend():
                 'message': 'Please analyze some audio first using /classify-audio'
             }), 400
         
+        # Check if enough time has passed since last Gemini call (90 seconds minimum)
+        if PARTY_STATE["last_gemini_call"]:
+            elapsed = (datetime.now() - PARTY_STATE["last_gemini_call"]).total_seconds()
+            if elapsed < 90:
+                return jsonify({
+                    'message': f'Too soon to call Gemini again. Wait {int(90 - elapsed)} more seconds.',
+                    'elapsed_seconds': int(elapsed),
+                    'required_interval': 90
+                }), 429  # Too Many Requests
+        
         # Build context from current state
         context = build_gemini_context()
         if not context:
             return jsonify({'error': 'Failed to build context'}), 500
         
         # Call Gemini API
-        logging.info("Calling Gemini API for recommendations...")
+        logging.info(f"Calling Gemini API for recommendations (call #{PARTY_STATE['gemini_call_count'] + 1})...")
         recommendation = call_gemini_api(context)
         
         if "error" in recommendation:
             return jsonify(recommendation), 500
         
-        # Return full recommendation
+        # Update party state
+        PARTY_STATE["gemini_call_count"] += 1
+        
+        # Add recommended songs to playlist queue
+        if "next_songs" in recommendation:
+            for song in recommendation["next_songs"]:
+                PARTY_STATE["playlist"].append({
+                    "title": song.get("title"),
+                    "artist": song.get("artist"),
+                    "genre": song.get("genre"),
+                    "added_at": datetime.now().isoformat(),
+                    "predicted_score": song.get("predicted_impact", {}).get("expected_score"),
+                    "reasoning": song.get("reasoning")
+                })
+            logging.info(f"Added {len(recommendation['next_songs'])} songs to playlist queue")
+        
+        # Return full recommendation with updated playlist
         result = {
             'context': context,
             'recommendation': recommendation,
-            'timestamp': datetime.now().isoformat()
+            'timestamp': datetime.now().isoformat(),
+            'gemini_call_count': PARTY_STATE["gemini_call_count"],
+            'playlist_size': len(PARTY_STATE["playlist"]),
+            'songs_added': len(recommendation.get("next_songs", []))
         }
         
-        logging.info(f"Gemini recommendation generated successfully")
+        logging.info(f"Gemini recommendation generated successfully (call #{PARTY_STATE['gemini_call_count']})")
         return jsonify(result)
         
     except Exception as e:
@@ -721,109 +758,77 @@ def gemini_recommend():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
-@app.route('/update-song', methods=['POST'])
-def update_song():
-    """Update current playing song and track its performance"""
+@app.route('/add-to-playlist', methods=['POST'])
+def add_to_playlist():
+    """Add songs to the playlist queue (simplified - no per-song tracking)"""
     try:
         data = request.get_json()
         
         if not data:
             return jsonify({'error': 'No data provided'}), 400
         
-        # If starting a new song
-        if 'song' in data:
-            song = data['song']
-            PARTY_STATE["current_song"] = {
+        # Expect a list of songs to add
+        songs = data.get('songs', [])
+        if not songs:
+            return jsonify({'error': 'No songs provided'}), 400
+        
+        added_count = 0
+        for song in songs:
+            PARTY_STATE["playlist"].append({
                 "title": song.get("title"),
                 "artist": song.get("artist"),
                 "genre": song.get("genre"),
-                "start_time": datetime.now().isoformat(),
-                "reactions": [],
-                "predicted_score": song.get("predicted_score")
-            }
-            logging.info(f"Started tracking: {song.get('title')} by {song.get('artist')}")
-            return jsonify({'status': 'Song tracking started', 'song': PARTY_STATE["current_song"]})
+                "added_at": datetime.now().isoformat(),
+                "source": song.get("source", "manual")
+            })
+            added_count += 1
+            logging.info(f"Added to playlist: {song.get('title')} by {song.get('artist')}")
         
-        # If ending a song (moving to history)
-        if data.get('action') == 'end_song':
-            if PARTY_STATE["current_song"]:
-                current = PARTY_STATE["current_song"]
-                
-                # Calculate performance metrics
-                if current["reactions"]:
-                    avg_score = np.mean(current["reactions"])
-                    peak_score = np.max(current["reactions"])
-                    min_score = np.min(current["reactions"])
-                    
-                    # Determine outcome
-                    if avg_score > 0.6:
-                        outcome = "success"
-                    elif avg_score > 0.3:
-                        outcome = "moderate"
-                    else:
-                        outcome = "poor"
-                    
-                    # Calculate prediction accuracy if available
-                    prediction_accuracy = None
-                    if current.get("predicted_score"):
-                        prediction_accuracy = abs(current["predicted_score"] - avg_score)
-                    
-                    # Add to history
-                    song_record = {
-                        "title": current["title"],
-                        "artist": current["artist"],
-                        "genre": current["genre"],
-                        "played_at": current["start_time"],
-                        "avg_reaction_score": round(float(avg_score), 2),
-                        "peak_reaction": round(float(peak_score), 2),
-                        "min_reaction": round(float(min_score), 2),
-                        "outcome": outcome,
-                        "predicted_score": current.get("predicted_score"),
-                        "prediction_accuracy": round(float(prediction_accuracy), 2) if prediction_accuracy else None
-                    }
-                    
-                    PARTY_STATE["song_history"].append(song_record)
-                    logging.info(f"Song ended: {current['title']} - Outcome: {outcome}, Avg: {avg_score:.2f}")
-                    
-                    # Reset current song
-                    PARTY_STATE["current_song"] = None
-                    
-                    return jsonify({'status': 'Song ended and added to history', 'song_record': song_record})
-                else:
-                    return jsonify({'error': 'No reactions recorded for current song'}), 400
-            else:
-                return jsonify({'error': 'No current song to end'}), 400
-        
-        return jsonify({'error': 'Invalid action'}), 400
+        return jsonify({
+            'status': 'Songs added to playlist',
+            'songs_added': added_count,
+            'playlist_size': len(PARTY_STATE["playlist"]),
+            'playlist': PARTY_STATE["playlist"][-10:]  # Return last 10 songs
+        })
         
     except Exception as e:
-        logging.error(f"Error in update_song: {e}")
+        logging.error(f"Error in add_to_playlist: {e}")
         import traceback
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
 @app.route('/party-state', methods=['GET'])
 def get_party_state():
-    """Get current party state and statistics"""
+    """Get current party state and statistics (simplified for continuous monitoring)"""
     try:
         if PARTY_STATE["start_time"]:
             elapsed_minutes = (datetime.now() - PARTY_STATE["start_time"]).seconds // 60
         else:
             elapsed_minutes = 0
         
-        avg_5min = np.mean(SCORE_HISTORY[-60:]) if len(SCORE_HISTORY) >= 60 else (np.mean(SCORE_HISTORY) if SCORE_HISTORY else 0)
+        # Calculate recent averages
+        avg_90s = np.mean(SCORE_HISTORY[-6:]) if len(SCORE_HISTORY) >= 6 else (np.mean(SCORE_HISTORY) if SCORE_HISTORY else 0)
+        avg_5min = np.mean(SCORE_HISTORY[-20:]) if len(SCORE_HISTORY) >= 20 else (np.mean(SCORE_HISTORY) if SCORE_HISTORY else 0)
+        
+        # Calculate time since last Gemini call
+        seconds_since_gemini = None
+        if PARTY_STATE["last_gemini_call"]:
+            seconds_since_gemini = int((datetime.now() - PARTY_STATE["last_gemini_call"]).total_seconds())
         
         state = {
             "party_active": PARTY_STATE["start_time"] is not None,
             "elapsed_minutes": elapsed_minutes,
-            "current_song": PARTY_STATE["current_song"],
-            "total_songs_played": len(PARTY_STATE["song_history"]),
             "current_score": round(float(SCORE_HISTORY[-1]), 2) if SCORE_HISTORY else 0.0,
             "current_trend": detect_trend(),
             "party_stage": calculate_party_stage(elapsed_minutes, avg_5min, detect_trend()),
+            "avg_score_90s": round(float(avg_90s), 2),
             "avg_score_5min": round(float(avg_5min), 2),
+            "score_history_90s": [round(float(s), 2) for s in SCORE_HISTORY[-6:]],
             "total_samples": len(SCORE_HISTORY),
-            "song_history": PARTY_STATE["song_history"][-10:],  # Last 10 songs
+            "playlist_size": len(PARTY_STATE["playlist"]),
+            "playlist": PARTY_STATE["playlist"][-10:],  # Last 10 songs in queue
+            "gemini_call_count": PARTY_STATE["gemini_call_count"],
+            "seconds_since_gemini_call": seconds_since_gemini,
             "gemini_enabled": gemini_model is not None,
             "last_gemini_call": PARTY_STATE["last_gemini_call"].isoformat() if PARTY_STATE["last_gemini_call"] else None
         }
@@ -839,10 +844,9 @@ def reset_party():
     """Reset party state (for testing or new session)"""
     try:
         PARTY_STATE["start_time"] = None
-        PARTY_STATE["current_song"] = None
-        PARTY_STATE["song_history"] = []
-        PARTY_STATE["prediction_tracker"] = []
+        PARTY_STATE["playlist"] = []
         PARTY_STATE["last_gemini_call"] = None
+        PARTY_STATE["gemini_call_count"] = 0
         SCORE_HISTORY.clear()
         
         logging.info("Party state reset")
@@ -852,21 +856,276 @@ def reset_party():
         logging.error(f"Error in reset_party: {e}")
         return jsonify({'error': str(e)}), 500
 
+# ---------- Frontend Routes ----------
+
+@app.route('/')
+@app.route('/login')
+def login_page():
+    """Serve the login page"""
+    return render_template('login.html') if os.path.exists('frontend/login.html') else '''
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Plailist - Login</title>
+        <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background:#f5f7fb; }
+            .container { max-width:400px; margin:80px auto; background:white; padding:24px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+            label { display:block; margin-bottom:6px; font-weight:600 }
+            input[type="email"], input[type="password"] { width:100%; padding:8px 10px; margin-bottom:12px; border:1px solid #dfe6ef; border-radius:4px }
+            button { width:100%; padding:10px; background:#2563eb; color:white; border:none; border-radius:4px; font-weight:600; cursor:pointer; }
+            button:hover { background:#1d4ed8; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>🎧 Plailist - Sign in</h2>
+            <p style="color:#6b7280; margin-bottom:24px;">AI-powered party DJ with crowd vibe analysis</p>
+            <form method="GET" action="/session">
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" value="demo@plailist.com" />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" value="demo" />
+                </div>
+                <button type="submit">Start Party Session</button>
+            </form>
+        </div>
+    </body>
+    </html>
+    '''
+
+@app.route('/session')
+def session_home():
+    """
+    Serve the main party session page (home.html)
+    Query parameter: vibe (optional) - initial vibe setting
+    """
+    vibe = request.args.get('vibe', 'Energetic and Upbeat')
+    
+    try:
+        # Serve home.html from frontend directory
+        return render_template('home.html')
+    except Exception as e:
+        logging.error(f"Error serving home.html: {e}")
+        return jsonify({'error': 'home.html not found', 'details': str(e)}), 404
+
+@app.route('/audio', methods=['POST'])
+def process_audio():
+    """
+    Unified audio processing endpoint for frontend
+    
+    Flow:
+    1. Receive audio from frontend
+    2. Call /classify-audio internally
+    3. Check if 90s passed, call /gemini-recommend if needed
+    4. Return vibe + songs + score to frontend
+    """
+    try:
+        logging.info("Frontend audio request received")
+        
+        # Get audio data
+        audio_bytes = None
+        if request.data:
+            audio_bytes = request.data
+        elif 'file' in request.files:
+            f = request.files['file']
+            audio_bytes = f.read()
+        elif 'audio' in request.files:
+            f = request.files['audio']
+            audio_bytes = f.read()
+        else:
+            return jsonify({'error': 'No audio provided'}), 400
+        
+        # Save audio temporarily and classify
+        import tempfile
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3') as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
+        
+        try:
+            # Classify audio
+            with open(tmp_path, 'rb') as f:
+                files = {'audio': ('audio.mp3', f, 'audio/mpeg')}
+                # Use internal request context to call classify_audio
+                from werkzeug.datastructures import FileStorage
+                
+                # Reopen file for internal call
+                with open(tmp_path, 'rb') as audio_file:
+                    # Simulate the classify_audio endpoint logic
+                    method_used = 'DSP'
+                    classifier = get_audio_classifier()
+                    
+                    if classifier is not None:
+                        logging.info("Using HuggingFace classifier")
+                        try:
+                            import numpy as np
+                            import soundfile as sf
+                            
+                            max_samples = 5 * 44100
+                            audio_data, sr = sf.read(tmp_path, dtype='float32', frames=max_samples)
+                            
+                            if len(audio_data.shape) > 1:
+                                audio_data = np.mean(audio_data, axis=1)
+                            
+                            if sr != 16000:
+                                step = int(sr / 16000)
+                                audio_data = audio_data[::step]
+                                sr = 16000
+                            
+                            if len(audio_data) > 80000:
+                                audio_data = audio_data[:80000]
+                            
+                            preds = classifier(audio_data.astype(np.float32), sampling_rate=sr)
+                            probs = aggregate_probs(preds)
+                            method_used = 'HuggingFace'
+                        except Exception as e:
+                            logging.error(f"HF classifier failed: {e}, falling back to DSP")
+                            probs = analyze_audio_dsp(tmp_path)
+                    else:
+                        logging.info("Using DSP fallback analysis")
+                        probs = analyze_audio_dsp(tmp_path)
+                    
+                    enthusiasm_score = calculate_enthusiasm_score(probs)
+                    SCORE_HISTORY.append(enthusiasm_score)
+                    if len(SCORE_HISTORY) > WINDOW_SIZE:
+                        SCORE_HISTORY.pop(0)
+                    trend = detect_trend()
+                    
+                    if PARTY_STATE["start_time"] is None:
+                        PARTY_STATE["start_time"] = datetime.now()
+                    
+                    classification_result = {
+                        'probs': probs,
+                        'enthusiasm_score': round(enthusiasm_score, 2),
+                        'trend': trend,
+                        'method': method_used
+                    }
+            
+            # Check if we should call Gemini (90s interval)
+            should_call_gemini = False
+            gemini_result = None
+            
+            if PARTY_STATE["last_gemini_call"]:
+                elapsed = (datetime.now() - PARTY_STATE["last_gemini_call"]).total_seconds()
+                should_call_gemini = elapsed >= 90
+            else:
+                should_call_gemini = True  # First call
+            
+            if should_call_gemini and gemini_model:
+                logging.info("Calling Gemini for recommendations...")
+                context = build_gemini_context()
+                if context:
+                    recommendation = call_gemini_api(context)
+                    
+                    if "error" not in recommendation:
+                        PARTY_STATE["gemini_call_count"] += 1
+                        
+                        # Add songs to playlist
+                        if "next_songs" in recommendation:
+                            for song in recommendation["next_songs"]:
+                                PARTY_STATE["playlist"].append({
+                                    "title": song.get("title"),
+                                    "artist": song.get("artist"),
+                                    "genre": song.get("genre"),
+                                    "added_at": datetime.now().isoformat(),
+                                    "predicted_score": song.get("predicted_impact", {}).get("expected_score"),
+                                    "reasoning": song.get("reasoning")
+                                })
+                        
+                        gemini_result = recommendation
+            
+            # Map to frontend vibe format
+            vibe = "Energetic and Upbeat"  # Default
+            if gemini_result and gemini_result.get('action'):
+                action = gemini_result['action'].get('recommendation', '')
+                if action == "increase_energy":
+                    vibe = "Rising Energy"
+                elif action == "wind_down":
+                    vibe = "Slowing Down"
+                elif action == "maintain_energy":
+                    if enthusiasm_score > 0.5:
+                        vibe = "Energetic and Upbeat"
+                    else:
+                        vibe = "Calm and Mellow"
+            else:
+                # Determine vibe from score
+                if enthusiasm_score > 0.6:
+                    vibe = "Energetic and Upbeat"
+                elif enthusiasm_score < 0:
+                    vibe = "Calm and Mellow"
+                elif trend == "rising":
+                    vibe = "Rising Energy"
+                elif trend == "falling":
+                    vibe = "Slowing Down"
+            
+            # Prepare response
+            response = {
+                'vibe': vibe,
+                'score': round(enthusiasm_score, 2),
+                'trend': trend,
+                'method': method_used,
+                'gemini_called': gemini_result is not None,
+                'songs': []
+            }
+            
+            # Add songs from Gemini if available
+            if gemini_result and "next_songs" in gemini_result:
+                response['songs'] = [
+                    {'title': s.get('title'), 'artist': s.get('artist')}
+                    for s in gemini_result['next_songs']
+                ]
+            
+            # Add current playlist
+            response['current_playlist'] = [
+                {'title': s.get('title'), 'artist': s.get('artist')}
+                for s in PARTY_STATE["playlist"][-10:]
+            ]
+            
+            logging.info(f"Frontend response: vibe={vibe}, score={enthusiasm_score:.2f}, songs={len(response['songs'])}")
+            return jsonify(response), 200
+            
+        finally:
+            # Cleanup temp file
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
+    
+    except Exception as e:
+        logging.error(f"Error in /audio endpoint: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e), 'type': type(e).__name__}), 500
+
 if __name__ == '__main__':
-    print("=" * 50)
-    print("Starting Flask server on http://127.0.0.1:5000")
-    print("=" * 50)
-    print("Endpoints:")
-    print("  GET  /health              - Health check")
-    print("  POST /classify-audio     - Analyze audio crowd reaction")
-    print("  POST /gemini-recommend   - Get AI song recommendations")
-    print("  POST /update-song        - Update current/end song tracking")
-    print("  GET  /party-state        - Get party statistics")
-    print("  POST /reset-party        - Reset party session")
-    print("=" * 50)
+    print("=" * 70)
+    print("🎧 PLAILIST - AI DJ Party System")
+    print("=" * 70)
+    print("\n🌐 Server starting on http://127.0.0.1:5000\n")
+    print("📱 Frontend URLs:")
+    print("   • Login:  http://127.0.0.1:5000/")
+    print("   • Party:  http://127.0.0.1:5000/session")
+    print("\n🤖 API Endpoints:")
+    print("   • GET  /health              - Health check")
+    print("   • POST /classify-audio     - Analyze audio crowd reaction")
+    print("   • POST /gemini-recommend   - Get AI song recommendations (90s interval)")
+    print("   • POST /audio              - Frontend unified endpoint")
+    print("   • POST /add-to-playlist    - Add songs to playlist queue")
+    print("   • GET  /party-state        - Get party statistics and playlist")
+    print("   • POST /reset-party        - Reset party session")
+    print("\n" + "=" * 70)
     if gemini_model:
-        print("✓ Gemini AI integration ENABLED")
+        print("✅ Gemini AI integration ENABLED")
     else:
-        print("✗ Gemini AI integration DISABLED (no API key)")
-    print("=" * 50)
+        print("⚠️  Gemini AI integration DISABLED (no API key)")
+    print("=" * 70)
+    print("\n� Architecture:")
+    print("   → Frontend calls /audio with recorded audio")
+    print("   → Server classifies audio (HuggingFace or DSP)")
+    print("   → Every 90s: Gemini recommends 2-3 songs")
+    print("   → Vibe meter updates in real-time")
+    print("   → Playlist queue grows automatically")
+    print("\n" + "=" * 70 + "\n")
     app.run(host='127.0.0.1', port=5000, debug=False)

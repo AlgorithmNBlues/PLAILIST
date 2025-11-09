@@ -6,8 +6,7 @@ url = "http://127.0.0.1:5000/classify-audio"
 audio_files = [
     "07065073.wav",
     "crowd-cheer-and-applause-406644.mp3",
-    "crowd-disappointment-reaction-352718.mp3", 
-    "arin.mp3"
+    "crowd-disappointment-reaction-352718.mp3"
 ]
 
 for audio_file in audio_files:
