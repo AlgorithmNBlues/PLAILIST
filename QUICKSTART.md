@@ -8,8 +8,9 @@
    ```
    
 2. **Configure API key:**
-   - Your key is already in `.env`: `AIzaSyDx5OwoturDv_u3SIlzFgWygerrvNr_-kY`
-   - ✅ Ready to use!
+   - Create a `.env` file in the root directory
+   - Add: `GEMINI_API_KEY=your_actual_api_key_here`
+   - Get your key from: https://ai.google.dev/
 
 ## ▶️ Start Server
 

@@ -64,6 +64,27 @@ PLAILIST is a complete AI DJ system that:
 
 ---
 
+## 🎬 2-Minute Demo
+
+**Perfect for hackathon presentations!**
+
+1. Start Flask server: `python backend\app.py`
+2. Start workflow: `python integrated_dj_workflow_v2.py`
+3. Open: http://127.0.0.1:5000/
+
+**What you'll see:**
+- **0:00-0:30** - Bar chatter (score: -0.3) → "Party starting..."
+- **0:30-1:00** - Crowd cheering (score: +0.7) → Vibe meter surges!
+- **1:00-1:30** - Sustained cheering → **🤖 Gemini adds 3 songs!**
+- **1:30-2:00** - Disappointment (score: -1.2) → Energy drops
+- **2:00-2:30** - Recovery cheering → **🤖 Gemini adds 2 more songs!**
+
+**Result:** Party playlist grows from 5 → 8 → 10 songs as AI adapts to the crowd!
+
+See `QUICK_DEMO_GUIDE.md` for detailed instructions.
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -100,7 +121,37 @@ GEMINI_TEMPERATURE=0.7
 
 ### Running the System
 
-**Terminal 1: Start Fingerprint Server**
+#### For Demo (Simplified - 2 Terminals)
+
+**Terminal 1: Start Flask Server**
+```bash
+python backend\app.py
+```
+✅ Backend: http://127.0.0.1:5000
+✅ Frontend: http://127.0.0.1:5000/ (opens automatically in browser)
+
+**Terminal 2: Run Demo Workflow**
+```bash
+python integrated_dj_workflow_v2.py
+```
+This will:
+- Reset party state
+- Add 5 seed songs from Spotify fingerprints
+- Analyze demo audio every 30 seconds
+- Call Gemini AI every 90 seconds
+- Display real-time vibe and playlist updates
+
+**Open in Browser:**
+```
+http://127.0.0.1:5000/
+```
+Watch the vibe meter respond to audio analysis in real-time!
+
+---
+
+#### For Full System (4 Terminals)
+
+**Terminal 1: Start Fingerprint Server** (Optional)
 ```bash
 cd PLAILIST-dj-attendee-fingerprint
 node fingerprint-server.js
@@ -115,10 +166,10 @@ python backend\app.py
 
 **Terminal 3: Run Integrated Workflow**
 ```bash
-python integrated_dj_workflow.py
+python integrated_dj_workflow_v2.py
 ```
 
-**Terminal 4 (Optional): Live Audio Monitoring**
+**Terminal 4: Live Audio Monitoring** (Optional)
 ```bash
 python record_live_audio.py
 ```
@@ -130,8 +181,14 @@ python record_live_audio.py
 ```
 PLAILIST/
 ├── backend/
-│   ├── app.py                          # Main Flask server (869 lines)
+│   ├── app.py                          # Main Flask server (1292 lines)
 │   └── requirements.txt                # Python dependencies
+│
+├── frontend/
+│   ├── home.html                       # Main party session UI
+│   └── static/
+│       ├── vaibify_func.js             # Vibe meter & real-time updates
+│       └── vaibify_style.css           # UI styling
 │
 ├── PLAILIST-dj-attendee-fingerprint/
 │   ├── fingerprint-server.js           # Node.js fingerprint server
@@ -140,17 +197,24 @@ PLAILIST/
 │   └── spotify_tracks_jayanth.csv      # User 3 data (439 tracks)
 │
 ├── playlist_initializer.py             # Group analysis & seed generation
-├── integrated_dj_workflow.py           # Complete workflow orchestration
+├── integrated_dj_workflow_v2.py        # Complete workflow orchestration
 ├── record_live_audio.py                # Live microphone capture
-├── test_integration.py                 # Integration test suite
+├── test_integrated_system.py           # Integration test suite
+│
+├── Demo Audio Files/
+│   ├── people-talking-at-bar-72249.mp3            # Chatter (score: -0.3)
+│   ├── crowd-cheer-and-applause-406644.mp3        # Cheering (score: +0.7)
+│   └── crowd-disappointment-reaction-352718.mp3   # Disappointment (score: -1.2)
 │
 ├── Documentation/
+│   ├── ABOUT_THE_PROJECT.md            # Project story & learnings
+│   ├── QUICK_DEMO_GUIDE.md             # 2-minute demo instructions
+│   ├── DEMO_AUDIO_SEQUENCE.md          # Demo planning guide
 │   ├── INTEGRATED_SYSTEM_GUIDE.md      # Complete system guide
 │   ├── GEMINI_INTEGRATION_SPEC.md      # Technical specification
 │   ├── GEMINI_API_REFERENCE.md         # API documentation
 │   ├── LIVE_AUDIO_SETUP.md             # Audio recording setup
-│   ├── QUICKSTART.md                   # Basic setup guide
-│   └── README.md                       # This file
+│   └── QUICKSTART.md                   # Basic setup guide
 │
 └── .env                                # Environment variables (not in git)
 ```
